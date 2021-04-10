@@ -54,7 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Budget\BudgetCreate.cs" />
+    <Compile Include="Budget\BudgetDetail.cs" />
+    <Compile Include="Budget\BudgetEdit.cs" />
+    <Compile Include="Budget\BudgetListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

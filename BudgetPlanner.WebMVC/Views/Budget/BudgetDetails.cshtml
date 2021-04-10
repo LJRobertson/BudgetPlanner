@@ -1,0 +1,42 @@
+﻿@model BudgetPlanner.Models.BudgetDetail
+
+@{
+    ViewBag.Title = "BudgetDetails";
+}
+
+<h2>BudgetDetails</h2>
+
+<div>
+    <h4>BudgetDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BudgetId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BudgetId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BudgetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BudgetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BudgetAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BudgetAmount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetId}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
