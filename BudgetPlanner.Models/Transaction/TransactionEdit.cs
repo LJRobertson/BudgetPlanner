@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetPlanner.Data
+namespace BudgetPlanner.Models.Transaction
 {
-    public class Transaction
+    public class TransactionEdit
     {
-        [Key]
         public int TransactionId { get; set; }
 
         [Required]

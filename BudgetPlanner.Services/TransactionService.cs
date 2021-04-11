@@ -60,6 +60,61 @@ namespace BudgetPlanner.Services
             }
         }
 
+        public TransactionDetail GetTransactionById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Transactions
+                        .Single(e => e.TransactionId == id && e.UserId == _userId);
+
+                return
+                    new TransactionDetail
+                    {
+                        TransactionId = entity.TransactionId,
+                        Amount = entity.Amount,
+                        TransactionDate = entity.TransactionDate,
+                        MerchantName = entity.MerchantName,
+                        CategoryId = entity.CategoryId,
+                        ExcludeTransaction = entity.ExcludeTransaction
+                    };
+            }
+        }
+
+        public bool UpdateTransaction(TransactionEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Transactions
+                        .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
+
+                entity.Name = model.Name;
+                entity.Amount = model.Amount;
+                entity.TransactionDate = model.TransactionDate;
+                entity.MerchantName = model.MerchantName;
+                entity.CategoryId = model.CategoryId;
+                entity.ExcludeTransaction = model.ExcludeTransaction;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteTransaction(int transactionId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Transactions
+                    .Single(e => e.TransactionId == transactionId && e.UserId == _userId);
+
+                ctx.Transactions.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
     }
 }

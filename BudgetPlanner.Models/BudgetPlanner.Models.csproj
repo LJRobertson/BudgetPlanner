@@ -60,6 +60,8 @@
     <Compile Include="Budget\BudgetListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction\TransactionCreate.cs" />
+    <Compile Include="Transaction\TransactionDetail.cs" />
+    <Compile Include="Transaction\TransactionEdit.cs" />
     <Compile Include="Transaction\TransactionListItem.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,14 @@ using System.Threading.Tasks;
 namespace BudgetPlanner.Data
 {
     public class Memo
+
     {
         [Key]
-        public int MemoId { get; set; }
+        [ForeignKey(nameof(Transaction))]
+        public int TransactionId { get; set; }
 
+        public virtual Memo Transaction { get; set; }
+        
         [Required]
         public Guid UserId { get; set; }
 
