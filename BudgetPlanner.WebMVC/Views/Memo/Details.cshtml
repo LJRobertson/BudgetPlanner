@@ -1,0 +1,34 @@
+﻿@model BudgetPlanner.Models.Memo.MemoDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MemoDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemoContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemoContent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id= Model.TransactionId}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

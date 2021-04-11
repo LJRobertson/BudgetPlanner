@@ -31,5 +31,7 @@ namespace BudgetPlanner.Data
         public int CategoryId { get; set; }
 
         public bool ExcludeTransaction { get; set; }
+
+        public virtual Memo Memo  { get; set; }
     }
 }

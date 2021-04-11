@@ -58,6 +58,10 @@
     <Compile Include="Budget\BudgetDetail.cs" />
     <Compile Include="Budget\BudgetEdit.cs" />
     <Compile Include="Budget\BudgetListItem.cs" />
+    <Compile Include="Memo\MemoCreate.cs" />
+    <Compile Include="Memo\MemoDetail.cs" />
+    <Compile Include="Memo\MemoEdit.cs" />
+    <Compile Include="Memo\MemoListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction\TransactionCreate.cs" />
     <Compile Include="Transaction\TransactionDetail.cs" />
@@ -70,7 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Category\" />
-    <Folder Include="Memo\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
