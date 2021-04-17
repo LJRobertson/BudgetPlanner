@@ -23,7 +23,7 @@ namespace BudgetPlanner.Data
         [Required]
         public double BudgetAmount { get; set; }
 
-        public List<int> ListOfTransactionIds { get; set; } = new List<int>();
+        public virtual List<int> ListOfTransactionIds { get; set; } = new List<int>();
 
         public virtual List<Transaction> ListOfTransactions { get; set; } = new List<Transaction>();
 
@@ -32,7 +32,7 @@ namespace BudgetPlanner.Data
 
         //public virtual Transaction Transaction { get; set; }
 
-        public List<int> ListOfCategoryIds { get; set; } = new List<int>();
+        public virtual List<int> ListOfCategoryIds { get; set; } = new List<int>();
 
         public virtual List<Category> ListOfCategories { get; set; } = new List<Category>();
 

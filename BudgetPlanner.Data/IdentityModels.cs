@@ -36,6 +36,7 @@ namespace BudgetPlanner.Data
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Memo> Memos { get; set; }
         public DbSet<Category>  Categories { get; set; }
+        public DbSet<BudgetCategory> BudgetCategory { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

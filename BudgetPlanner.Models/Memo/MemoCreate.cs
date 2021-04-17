@@ -9,6 +9,7 @@ namespace BudgetPlanner.Models.Memo
 {
     public class MemoCreate
     {
+        [Required]
         public int TransactionId { get; set; }
 
         [Required]

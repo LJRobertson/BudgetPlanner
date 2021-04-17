@@ -3,10 +3,23 @@ namespace BudgetPlanner.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.BudgetCategory",
+                c => new
+                    {
+                        BudgetId = c.Int(nullable: false),
+                        CategoryId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.BudgetId, t.CategoryId })
+                .ForeignKey("dbo.Budget", t => t.BudgetId, cascadeDelete: true)
+                .ForeignKey("dbo.Category", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.BudgetId)
+                .Index(t => t.CategoryId);
+            
             CreateTable(
                 "dbo.Budget",
                 c => new
@@ -25,11 +38,8 @@ namespace BudgetPlanner.Data.Migrations
                         CategoryId = c.Int(nullable: false, identity: true),
                         UserId = c.Guid(nullable: false),
                         Name = c.String(nullable: false),
-                        BudgetId = c.Int(),
                     })
-                .PrimaryKey(t => t.CategoryId)
-                .ForeignKey("dbo.Budget", t => t.BudgetId)
-                .Index(t => t.BudgetId);
+                .PrimaryKey(t => t.CategoryId);
             
             CreateTable(
                 "dbo.Transaction",
@@ -37,30 +47,29 @@ namespace BudgetPlanner.Data.Migrations
                     {
                         TransactionId = c.Int(nullable: false, identity: true),
                         UserId = c.Guid(nullable: false),
-                        Name = c.String(),
+                        Name = c.String(maxLength: 20),
                         Amount = c.Double(nullable: false),
                         TransactionDate = c.DateTime(nullable: false),
-                        MerchantName = c.String(),
+                        MerchantName = c.String(nullable: false),
                         CategoryId = c.Int(nullable: false),
                         ExcludeTransaction = c.Boolean(nullable: false),
-                        MemoId = c.Int(),
                         Budget_BudgetId = c.Int(),
                     })
                 .PrimaryKey(t => t.TransactionId)
-                .ForeignKey("dbo.Memo", t => t.MemoId)
                 .ForeignKey("dbo.Budget", t => t.Budget_BudgetId)
-                .Index(t => t.MemoId)
                 .Index(t => t.Budget_BudgetId);
             
             CreateTable(
                 "dbo.Memo",
                 c => new
                     {
-                        MemoId = c.Int(nullable: false, identity: true),
+                        TransactionId = c.Int(nullable: false),
                         UserId = c.Guid(nullable: false),
                         MemoContent = c.String(nullable: false, maxLength: 75),
                     })
-                .PrimaryKey(t => t.MemoId);
+                .PrimaryKey(t => t.TransactionId)
+                .ForeignKey("dbo.Transaction", t => t.TransactionId)
+                .Index(t => t.TransactionId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -132,6 +141,19 @@ namespace BudgetPlanner.Data.Migrations
                 .ForeignKey("dbo.ApplicationUser", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
             
+            CreateTable(
+                "dbo.CategoryBudget",
+                c => new
+                    {
+                        Category_CategoryId = c.Int(nullable: false),
+                        Budget_BudgetId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Category_CategoryId, t.Budget_BudgetId })
+                .ForeignKey("dbo.Category", t => t.Category_CategoryId, cascadeDelete: true)
+                .ForeignKey("dbo.Budget", t => t.Budget_BudgetId, cascadeDelete: true)
+                .Index(t => t.Category_CategoryId)
+                .Index(t => t.Budget_BudgetId);
+            
         }
         
         public override void Down()
@@ -140,16 +162,23 @@ namespace BudgetPlanner.Data.Migrations
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.BudgetCategory", "CategoryId", "dbo.Category");
+            DropForeignKey("dbo.BudgetCategory", "BudgetId", "dbo.Budget");
             DropForeignKey("dbo.Transaction", "Budget_BudgetId", "dbo.Budget");
-            DropForeignKey("dbo.Transaction", "MemoId", "dbo.Memo");
-            DropForeignKey("dbo.Category", "BudgetId", "dbo.Budget");
+            DropForeignKey("dbo.Memo", "TransactionId", "dbo.Transaction");
+            DropForeignKey("dbo.CategoryBudget", "Budget_BudgetId", "dbo.Budget");
+            DropForeignKey("dbo.CategoryBudget", "Category_CategoryId", "dbo.Category");
+            DropIndex("dbo.CategoryBudget", new[] { "Budget_BudgetId" });
+            DropIndex("dbo.CategoryBudget", new[] { "Category_CategoryId" });
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.Memo", new[] { "TransactionId" });
             DropIndex("dbo.Transaction", new[] { "Budget_BudgetId" });
-            DropIndex("dbo.Transaction", new[] { "MemoId" });
-            DropIndex("dbo.Category", new[] { "BudgetId" });
+            DropIndex("dbo.BudgetCategory", new[] { "CategoryId" });
+            DropIndex("dbo.BudgetCategory", new[] { "BudgetId" });
+            DropTable("dbo.CategoryBudget");
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
@@ -159,6 +188,7 @@ namespace BudgetPlanner.Data.Migrations
             DropTable("dbo.Transaction");
             DropTable("dbo.Category");
             DropTable("dbo.Budget");
+            DropTable("dbo.BudgetCategory");
         }
     }
 }

@@ -25,6 +25,7 @@ namespace BudgetPlanner.Services
                     UserId = _userId,
                     Name = model.Name,
                     Amount = model.Amount,
+                    TransactionDate = model.TransactionDate,
                     MerchantName = model.MerchantName,
                     CategoryId = model.CategoryId,
                     ExcludeTransaction = model.ExcludeTransaction

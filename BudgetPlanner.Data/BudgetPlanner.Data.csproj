@@ -55,24 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Budget.cs" />
+    <Compile Include="BudgetCategory.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Memo.cs" />
-    <Compile Include="Migrations\202104100155385_InitialCreate.cs" />
-    <Compile Include="Migrations\202104100155385_InitialCreate.Designer.cs">
-      <DependentUpon>202104100155385_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104101715159_UpdatedTransactionRequirements.cs" />
-    <Compile Include="Migrations\202104101715159_UpdatedTransactionRequirements.Designer.cs">
-      <DependentUpon>202104101715159_UpdatedTransactionRequirements.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104111645495_UpdatedMemo.cs" />
-    <Compile Include="Migrations\202104111645495_UpdatedMemo.Designer.cs">
-      <DependentUpon>202104111645495_UpdatedMemo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104112223429_CorrectedMemoAndTransaction.cs" />
-    <Compile Include="Migrations\202104112223429_CorrectedMemoAndTransaction.Designer.cs">
-      <DependentUpon>202104112223429_CorrectedMemoAndTransaction.cs</DependentUpon>
+    <Compile Include="Migrations\202104161709465_InitialMigration.cs" />
+    <Compile Include="Migrations\202104161709465_InitialMigration.Designer.cs">
+      <DependentUpon>202104161709465_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,17 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104100155385_InitialCreate.resx">
-      <DependentUpon>202104100155385_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104101715159_UpdatedTransactionRequirements.resx">
-      <DependentUpon>202104101715159_UpdatedTransactionRequirements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104111645495_UpdatedMemo.resx">
-      <DependentUpon>202104111645495_UpdatedMemo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104112223429_CorrectedMemoAndTransaction.resx">
-      <DependentUpon>202104112223429_CorrectedMemoAndTransaction.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104161709465_InitialMigration.resx">
+      <DependentUpon>202104161709465_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

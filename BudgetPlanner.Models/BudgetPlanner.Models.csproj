@@ -58,6 +58,10 @@
     <Compile Include="Budget\BudgetDetail.cs" />
     <Compile Include="Budget\BudgetEdit.cs" />
     <Compile Include="Budget\BudgetListItem.cs" />
+    <Compile Include="Category\CategoryCreate.cs" />
+    <Compile Include="Category\CategoryDetail.cs" />
+    <Compile Include="Category\CategoryEdit.cs" />
+    <Compile Include="Category\CategoryListItem.cs" />
     <Compile Include="Memo\MemoCreate.cs" />
     <Compile Include="Memo\MemoDetail.cs" />
     <Compile Include="Memo\MemoEdit.cs" />
@@ -72,8 +76,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Category\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

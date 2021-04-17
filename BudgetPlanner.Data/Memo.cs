@@ -11,11 +11,14 @@ namespace BudgetPlanner.Data
     public class Memo
 
     {
+        //[Key]
+        //public int MemoId { get; set; }
+
         [Key]
         [ForeignKey(nameof(Transaction))]
         public int TransactionId { get; set; }
 
-        public virtual Memo Transaction { get; set; }
+        public virtual Transaction Transaction { get; set; }
         
         [Required]
         public Guid UserId { get; set; }

@@ -1,5 +1,5 @@
 ﻿using BudgetPlanner.Data;
-using BudgetPlanner.Models.Memo;
+using BudgetPlanner.Models.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,99 +8,98 @@ using System.Threading.Tasks;
 
 namespace BudgetPlanner.Services
 {
-    public class MemoService
+    public class CategoryService
     {
         private readonly Guid _userId;
 
-        public MemoService(Guid userId)
+        public CategoryService(Guid userId)
         {
             _userId = userId;
         }
 
-        public bool CreateMemo(MemoCreate model)
+        public bool CreateCategory(CategoryCreate model)
         {
             var entity =
-                new Memo()
+                new Category()
                 {
                     UserId = _userId,
-                    TransactionId = model.TransactionId,
-                    MemoContent = model.MemoContent
+                    Name = model.Name
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Memos.Add(entity);
+                ctx.Categories.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<MemoListItem> GetMemos()
+        public IEnumerable<CategoryListItem> GetCategories()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Memos
+                        .Categories
                         .Where(e => e.UserId == _userId)
                         .Select(
                             e =>
-                                new MemoListItem
+                                new CategoryListItem
                                 {
-                                    TransactionId = e.TransactionId,
-                                    MemoContent = e.MemoContent
+                                    CategoryId = e.CategoryId,
+                                    Name = e.Name
                                 }
                                );
+
                 return query.ToArray();
             }
         }
 
-        public MemoDetail GetMemoById(int id)
+        public CategoryDetail GetCategoryById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Memos
-                        .Single(e => e.TransactionId == id && e.UserId == _userId);
+                        .Categories
+                        .Single(e => e.CategoryId == id && e.UserId == _userId);
+
                 return
-                        new MemoDetail
-                        {
-                            TransactionId = entity.TransactionId,
-                            MemoContent = entity.MemoContent
-                        };
+                    new CategoryDetail
+                    {
+                        CategoryId = entity.CategoryId,
+                        Name = entity.Name
+                    };
             }
         }
 
-        public bool UpdateMemo(MemoEdit model)
+        public bool UpdateCategory(CategoryEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Memos
-                        .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
+                        .Categories
+                        .Single(e => e.CategoryId == model.CategoryId && e.UserId == _userId);
 
-                entity.TransactionId = model.TransactionId;
-                entity.MemoContent = model.MemoContent;
+                entity.Name = model.Name;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteMemo(int memoId)
+        public bool DeleteCategory(int categoryId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Memos
-                        .Single(e => e.TransactionId == memoId && e.UserId == _userId);
+                        .Categories
+                        .Single(e => e.CategoryId == categoryId && e.UserId == _userId);
 
-                ctx.Memos.Remove(entity);
+                ctx.Categories.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }

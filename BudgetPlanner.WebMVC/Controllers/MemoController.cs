@@ -17,8 +17,8 @@ namespace BudgetPlanner.WebMVC.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new MemoService(userId);
-            var model = new MemoListItem[0];
-            return View();
+            var model = service.GetMemos();
+            return View(model);
         }
 
         public ActionResult Create()

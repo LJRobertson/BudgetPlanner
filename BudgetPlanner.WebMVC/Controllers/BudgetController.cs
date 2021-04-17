@@ -50,7 +50,7 @@ namespace BudgetPlanner.WebMVC.Controllers
             return View(model);
         }
 
-        public ActionResult BudgetDetails(int id)
+        public ActionResult Details(int id)
         {
             var svc = CreateBudgetService();
             var model = svc.GetBudgetById(id);

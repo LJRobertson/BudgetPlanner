@@ -19,9 +19,12 @@ namespace BudgetPlanner.Data
         [Required]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(Budget))]
-        public int? BudgetId { get; set; }
+        public virtual List<int> ListOfBudgetIds { get; set; } = new List<int>();
+        public virtual List<Budget> ListOfBudgets { get; set; } = new List<Budget>();
 
-        public virtual Budget Budget { get; set; }
+        //[ForeignKey(nameof(Budget))]
+        //public int? BudgetId { get; set; }
+
+        //public virtual Budget Budget { get; set; }
     }
 }
