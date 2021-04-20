@@ -22,7 +22,6 @@ namespace BudgetPlanner.Services
             var entity =
                 new Memo()
                 {
-                    UserId = _userId,
                     TransactionId = model.TransactionId,
                     MemoContent = model.MemoContent
                 };
@@ -34,25 +33,25 @@ namespace BudgetPlanner.Services
             }
         }
 
-        public IEnumerable<MemoListItem> GetMemos()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Memos
-                        .Where(e => e.UserId == _userId)
-                        .Select(
-                            e =>
-                                new MemoListItem
-                                {
-                                    TransactionId = e.TransactionId,
-                                    MemoContent = e.MemoContent
-                                }
-                               );
-                return query.ToArray();
-            }
-        }
+        //public IEnumerable<MemoListItem> GetMemos()
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //                .Memos
+        //                .Where(e => e.UserId == _userId)
+        //                .Select(
+        //                    e =>
+        //                        new MemoListItem
+        //                        {
+        //                            TransactionId = e.TransactionId,
+        //                            MemoContent = e.MemoContent
+        //                        }
+        //                       );
+        //        return query.ToArray();
+        //    }
+        //}
 
         public MemoDetail GetMemoById(int id)
         {
@@ -61,7 +60,7 @@ namespace BudgetPlanner.Services
                 var entity =
                     ctx
                         .Memos
-                        .Single(e => e.TransactionId == id && e.UserId == _userId);
+                        .Single(e => e.TransactionId == id);
                 return
                         new MemoDetail
                         {
@@ -78,7 +77,7 @@ namespace BudgetPlanner.Services
                 var entity =
                     ctx
                         .Memos
-                        .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
+                        .Single(e => e.TransactionId == model.TransactionId);
 
                 entity.TransactionId = model.TransactionId;
                 entity.MemoContent = model.MemoContent;
@@ -94,7 +93,7 @@ namespace BudgetPlanner.Services
                 var entity =
                     ctx
                         .Memos
-                        .Single(e => e.TransactionId == memoId && e.UserId == _userId);
+                        .Single(e => e.TransactionId == memoId);
 
                 ctx.Memos.Remove(entity);
 

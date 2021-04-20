@@ -13,7 +13,7 @@ namespace BudgetPlanner.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202104161709465_InitialMigration"; }
+            get { return "202104200104146_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

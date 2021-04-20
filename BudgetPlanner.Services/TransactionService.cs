@@ -26,6 +26,7 @@ namespace BudgetPlanner.Services
                     Name = model.Name,
                     Amount = model.Amount,
                     TransactionDate = model.TransactionDate,
+                    BudgetId = model.BudgetId,
                     MerchantName = model.MerchantName,
                     CategoryId = model.CategoryId,
                     ExcludeTransaction = model.ExcludeTransaction
@@ -61,6 +62,27 @@ namespace BudgetPlanner.Services
             }
         }
 
+        public TransactionListItem GetTransactionListItemById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Transactions
+                        .Single(e => e.TransactionId == id && e.UserId == _userId);
+
+                return
+                    new TransactionListItem
+                    {
+                        TransactionId = entity.TransactionId,
+                        MerchantName = entity.MerchantName,
+                        Amount = entity.Amount,
+                        TransactionDate = entity.TransactionDate,
+                        CategoryId = entity.CategoryId
+                    };
+            }
+        }
+
         public TransactionDetail GetTransactionById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -74,6 +96,7 @@ namespace BudgetPlanner.Services
                     new TransactionDetail
                     {
                         TransactionId = entity.TransactionId,
+                        BudgetId = entity.BudgetId,
                         Amount = entity.Amount,
                         TransactionDate = entity.TransactionDate,
                         MerchantName = entity.MerchantName,
@@ -93,6 +116,7 @@ namespace BudgetPlanner.Services
                         .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
 
                 entity.Name = model.Name;
+                entity.BudgetId = model.BudgetId;
                 entity.Amount = model.Amount;
                 entity.TransactionDate = model.TransactionDate;
                 entity.MerchantName = model.MerchantName;

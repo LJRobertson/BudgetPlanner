@@ -21,9 +21,6 @@ namespace BudgetPlanner.Data
         public virtual Transaction Transaction { get; set; }
         
         [Required]
-        public Guid UserId { get; set; }
-
-        [Required]
         [MaxLength(75, ErrorMessage = "Memo limited to 75 characters.")]
         public string MemoContent { get; set; }
     }

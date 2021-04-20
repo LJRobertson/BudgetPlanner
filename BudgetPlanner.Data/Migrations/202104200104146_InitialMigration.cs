@@ -51,20 +51,21 @@ namespace BudgetPlanner.Data.Migrations
                         Amount = c.Double(nullable: false),
                         TransactionDate = c.DateTime(nullable: false),
                         MerchantName = c.String(nullable: false),
+                        BudgetId = c.Int(nullable: false),
                         CategoryId = c.Int(nullable: false),
                         ExcludeTransaction = c.Boolean(nullable: false),
-                        Budget_BudgetId = c.Int(),
                     })
                 .PrimaryKey(t => t.TransactionId)
-                .ForeignKey("dbo.Budget", t => t.Budget_BudgetId)
-                .Index(t => t.Budget_BudgetId);
+                .ForeignKey("dbo.Budget", t => t.BudgetId, cascadeDelete: true)
+                .ForeignKey("dbo.Category", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.BudgetId)
+                .Index(t => t.CategoryId);
             
             CreateTable(
                 "dbo.Memo",
                 c => new
                     {
                         TransactionId = c.Int(nullable: false),
-                        UserId = c.Guid(nullable: false),
                         MemoContent = c.String(nullable: false, maxLength: 75),
                     })
                 .PrimaryKey(t => t.TransactionId)
@@ -164,8 +165,9 @@ namespace BudgetPlanner.Data.Migrations
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
             DropForeignKey("dbo.BudgetCategory", "CategoryId", "dbo.Category");
             DropForeignKey("dbo.BudgetCategory", "BudgetId", "dbo.Budget");
-            DropForeignKey("dbo.Transaction", "Budget_BudgetId", "dbo.Budget");
             DropForeignKey("dbo.Memo", "TransactionId", "dbo.Transaction");
+            DropForeignKey("dbo.Transaction", "CategoryId", "dbo.Category");
+            DropForeignKey("dbo.Transaction", "BudgetId", "dbo.Budget");
             DropForeignKey("dbo.CategoryBudget", "Budget_BudgetId", "dbo.Budget");
             DropForeignKey("dbo.CategoryBudget", "Category_CategoryId", "dbo.Category");
             DropIndex("dbo.CategoryBudget", new[] { "Budget_BudgetId" });
@@ -175,7 +177,8 @@ namespace BudgetPlanner.Data.Migrations
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
             DropIndex("dbo.Memo", new[] { "TransactionId" });
-            DropIndex("dbo.Transaction", new[] { "Budget_BudgetId" });
+            DropIndex("dbo.Transaction", new[] { "CategoryId" });
+            DropIndex("dbo.Transaction", new[] { "BudgetId" });
             DropIndex("dbo.BudgetCategory", new[] { "CategoryId" });
             DropIndex("dbo.BudgetCategory", new[] { "BudgetId" });
             DropTable("dbo.CategoryBudget");

@@ -54,6 +54,24 @@ namespace BudgetPlanner.Services
             }
         }
 
+        public CategoryListItem GetCategoryListItemById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Categories
+                        .Single(e => e.CategoryId == id && e.UserId == _userId);
+
+                return
+                    new CategoryListItem
+                    {
+                        CategoryId = entity.CategoryId,
+                        Name = entity.Name
+                    };
+            }
+        }
+
         public CategoryDetail GetCategoryById(int id)
         {
             using (var ctx = new ApplicationDbContext())

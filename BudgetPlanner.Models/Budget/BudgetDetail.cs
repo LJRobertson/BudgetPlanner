@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BudgetPlanner.Models.Category;
+using BudgetPlanner.Models.Transaction;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,9 +19,12 @@ namespace BudgetPlanner.Models
         [Display(Name ="Budgeted Amount")]
         public double BudgetAmount { get; set; }
 
-        public List<int> ListOfTransactionIds { get; set; } = new List<int>();
-
         public List<int> ListOfCategoryIds { get; set; } = new List<int>();
 
+        public virtual List<CategoryListItem> ListOfCategories { get; set; } = new List<CategoryListItem>();
+
+        public List<int> ListOfTransactionIds { get; set; } = new List<int>();
+
+        public virtual List<TransactionListItem> ListOfTransactions { get; set; } = new List<TransactionListItem>();
     }
 }

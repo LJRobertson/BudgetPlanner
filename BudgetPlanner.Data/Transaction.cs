@@ -28,7 +28,16 @@ namespace BudgetPlanner.Data
         public string MerchantName { get; set; }
 
         [Required]
+        [ForeignKey(nameof(Budget))]
+        public int BudgetId { get; set; }
+
+        public virtual Budget Budget { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
+
+        public Category Category { get; set; }
 
         public bool ExcludeTransaction { get; set; }
 
