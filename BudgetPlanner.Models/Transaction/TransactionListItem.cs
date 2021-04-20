@@ -12,6 +12,9 @@ namespace BudgetPlanner.Models.Transaction
         [Display(Name = "Transaction Number")]
         public int TransactionId { get; set; }
 
+        [Display(Name = "Budget ID")]
+        public int BudgetId { get; set; }
+
         [Display(Name ="Merchant Name")]
         public string MerchantName { get; set; }
 

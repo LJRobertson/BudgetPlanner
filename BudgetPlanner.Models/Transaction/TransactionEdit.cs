@@ -14,6 +14,10 @@ namespace BudgetPlanner.Models.Transaction
         [Required]
         public Guid UserId { get; set; }
 
+        [Required]
+        [Display(Name = "Budget ID")]
+        public int BudgetId { get; set; }
+
         [MaxLength(20, ErrorMessage = "Transaction Name cannot be longer than 20 characters.")]
         public string Name { get; set; }
 

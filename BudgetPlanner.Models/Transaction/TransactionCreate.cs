@@ -9,6 +9,9 @@ namespace BudgetPlanner.Models.Transaction
 {
     public class TransactionCreate
     {
+        [Required]
+        public int BudgetId { get; set; }
+
         [MaxLength(20, ErrorMessage = "Transaction Name cannot be longer than 20 characters.")]
         public string Name { get; set; }
 
