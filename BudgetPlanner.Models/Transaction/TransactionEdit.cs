@@ -23,7 +23,7 @@ namespace BudgetPlanner.Models.Transaction
 
         [Required]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime TransactionDate { get; set; }

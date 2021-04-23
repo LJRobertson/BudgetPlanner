@@ -17,7 +17,7 @@ namespace BudgetPlanner.Models.Transaction
         public string Name { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
 
         [Display(Name="Date")]
         [DataType(DataType.Date)]

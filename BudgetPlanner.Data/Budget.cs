@@ -21,7 +21,7 @@ namespace BudgetPlanner.Data
         public string BudgetName { get; set; }
 
         [Required]
-        public double BudgetAmount { get; set; }
+        public decimal BudgetAmount { get; set; }
 
         public virtual List<int> ListOfTransactionIds { get; set; } = new List<int>();
 

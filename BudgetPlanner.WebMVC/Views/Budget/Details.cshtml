@@ -41,8 +41,8 @@
             {
                 <ul>@item.TransactionId</ul>
                 <ul>@item.MerchantName</ul>
-                <ul>@string.Format("{0:C}",@item.Amount)</ul>
-                <ul>@item.TransactionDate</ul>
+                <ul>@string.Format("{0:C}",item.Amount)</ul>
+                <ul>@item.TransactionDate.ToString("MM/dd/yyyy")</ul>
                 <ul>@item.CategoryId</ul>
             }
             @*@Html.DisplayFor(model => model.ListOfTransactions)*@

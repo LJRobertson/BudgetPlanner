@@ -16,6 +16,6 @@ namespace BudgetPlanner.Models
 
         [Display(Name="Budgeted Amount")]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public double BudgetAmount { get; set; }
+        public decimal BudgetAmount { get; set; }
     }
 }

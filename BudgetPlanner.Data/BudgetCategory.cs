@@ -19,5 +19,8 @@ namespace BudgetPlanner.Data
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        //[DisplayFormat(DataFormatString = "{0:C}")]
+        //public decimal Amount { get; set; }
     }
 }

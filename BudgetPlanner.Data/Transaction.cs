@@ -20,7 +20,7 @@ namespace BudgetPlanner.Data
         public string Name { get; set; }
 
         [Required]
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public DateTime TransactionDate { get; set; }
 
