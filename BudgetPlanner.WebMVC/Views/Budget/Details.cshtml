@@ -33,10 +33,25 @@
         <dd>
             @Html.DisplayFor(model => model.BudgetAmount)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListOfTransactions)
+        </dt>
+        <dd>
+            @foreach (var item in Model.ListOfTransactions)
+            {
+                <ul>@item.TransactionId</ul>
+                <ul>@item.MerchantName</ul>
+                <ul>@string.Format("{0:C}",@item.Amount)</ul>
+                <ul>@item.TransactionDate</ul>
+                <ul>@item.CategoryId</ul>
+            }
+            @*@Html.DisplayFor(model => model.ListOfTransactions)*@
+            
+        </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

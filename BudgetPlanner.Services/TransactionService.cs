@@ -62,6 +62,31 @@ namespace BudgetPlanner.Services
             }
         }
 
+        //GET TRANSACTIONS BY BUDGET ID
+        public IEnumerable<TransactionListItem> GetTransactionsByBudgetId(int budgetId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Transactions
+                        .Where(e => e.BudgetId == budgetId && e.UserId == _userId)
+                        .Select(
+                            e =>
+                                new TransactionListItem
+                                {
+                                    TransactionId = e.TransactionId,
+                                    MerchantName = e.MerchantName,
+                                    Amount = e.Amount,
+                                    TransactionDate = e.TransactionDate,
+                                    CategoryId = e.CategoryId
+                                }
+                                );
+                return query.ToArray();
+            }
+        }
+
+
         public TransactionListItem GetTransactionListItemById(int id)
         {
             using (var ctx = new ApplicationDbContext())

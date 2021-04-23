@@ -18,9 +18,11 @@ namespace BudgetPlanner.Models.Transaction
         [Display(Name ="Merchant Name")]
         public string MerchantName { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double Amount { get; set; }
 
         [Display(Name = "Transaction Date")]
+        [DataType(DataType.Date)]
         public DateTime TransactionDate { get; set; }
 
         [Display(Name = "Category")]

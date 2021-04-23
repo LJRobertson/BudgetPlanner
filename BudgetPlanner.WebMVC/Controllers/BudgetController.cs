@@ -68,8 +68,8 @@ namespace BudgetPlanner.WebMVC.Controllers
                     BudgetId = detail.BudgetId,
                     BudgetName = detail.BudgetName,
                     BudgetAmount = detail.BudgetAmount,
-                    ListOfCategoryIds = detail.ListOfCategoryIds,
-                    ListOfTransactionIds = detail.ListOfTransactionIds
+                    //ListOfCategoryIds = detail.ListOfCategoryIds,
+                    //ListOfTransactionIds = detail.ListOfTransactionIds
                 };
 
             return View(model);

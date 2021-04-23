@@ -11,12 +11,14 @@ namespace BudgetPlanner.Models
 {
     public class BudgetDetail
     {
+        [Display(Name = "Budget ID")]
         public int BudgetId { get; set; }
 
-        [Display(Name="Budget Name")]
+        [Display(Name = "Budget Name")]
         public string BudgetName { get; set; }
 
-        [Display(Name ="Budgeted Amount")]
+        [Display(Name = "Budgeted Amount")]
+        [DisplayFormat(DataFormatString ="{0:C}")]
         public double BudgetAmount { get; set; }
 
         public List<int> ListOfCategoryIds { get; set; } = new List<int>();

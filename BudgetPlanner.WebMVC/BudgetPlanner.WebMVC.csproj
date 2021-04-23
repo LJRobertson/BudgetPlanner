@@ -256,8 +256,8 @@
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Memo\Create.cshtml" />
-    <Content Include="Views\Budget\Details.cshtml" />
     <Content Include="Views\Transaction\Create.cshtml" />
+    <Content Include="Views\Budget\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

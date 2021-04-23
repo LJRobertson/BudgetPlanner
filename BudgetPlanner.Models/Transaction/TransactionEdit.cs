@@ -22,8 +22,10 @@ namespace BudgetPlanner.Models.Transaction
         public string Name { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double Amount { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime TransactionDate { get; set; }
 
         [Required]

@@ -15,6 +15,7 @@ namespace BudgetPlanner.Models
         public string BudgetName { get; set; }
 
         [Display(Name="Budgeted Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double BudgetAmount { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace BudgetPlanner.Models
         public string BudgetName { get; set; }
 
         [Required]
+        [Display(Name = "Budget Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public double BudgetAmount { get; set; }
 
         public virtual List<int> ListOfTransactionIds { get; set; } = new List<int>();
