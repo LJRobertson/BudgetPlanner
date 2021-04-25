@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BudgetCategoryService.cs" />
     <Compile Include="BudgetService.cs" />
     <Compile Include="CategoryService.cs" />
     <Compile Include="MemoService.cs" />
