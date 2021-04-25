@@ -12,9 +12,6 @@ namespace BudgetPlanner.Models.Transaction
         public int TransactionId { get; set; }
 
         [Required]
-        public Guid UserId { get; set; }
-
-        [Required]
         [Display(Name = "Budget ID")]
         public int BudgetId { get; set; }
 

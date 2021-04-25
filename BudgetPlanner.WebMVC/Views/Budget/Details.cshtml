@@ -34,6 +34,16 @@
             @Html.DisplayFor(model => model.BudgetAmount)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ListOfCategories)
+        </dt>
+        <dd>
+            @foreach (var category in Model.ListOfCategories)
+            {
+                <ul>@category.Name</ul>
+                <ul>@category.CategoryAmount</ul>
+            }
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.ListOfTransactions)
         </dt>
         <dd>

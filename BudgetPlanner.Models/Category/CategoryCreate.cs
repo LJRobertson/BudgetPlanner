@@ -9,6 +9,16 @@ namespace BudgetPlanner.Models.Category
 {
     public class CategoryCreate
     {
-       public string Name { get; set; }
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Category Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal CategoryAmount { get; set; }
+
+        [Display(Name = "Budget IDs")]
+        public List<int> ListOfBudgetIds { get; set; } = new List<int>();
+
     }
 }

@@ -20,7 +20,7 @@ namespace BudgetPlanner.Data
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        //[DisplayFormat(DataFormatString = "{0:C}")]
-        //public decimal Amount { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal Amount { get; set; }
     }
 }

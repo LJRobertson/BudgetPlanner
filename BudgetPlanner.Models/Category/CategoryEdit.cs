@@ -13,5 +13,10 @@ namespace BudgetPlanner.Models.Category
         public int CategoryId { get; set; }
 
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Category Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal CategoryAmount { get; set; }
     }
 }

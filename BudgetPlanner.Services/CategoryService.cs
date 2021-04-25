@@ -23,12 +23,26 @@ namespace BudgetPlanner.Services
                 new Category()
                 {
                     UserId = _userId,
-                    Name = model.Name
+                    Name = model.Name,
+                    ListOfBudgetIds = model.ListOfBudgetIds
                 };
+
+            var amount = model.CategoryAmount;
 
             using (var ctx = new ApplicationDbContext())
             {
+                foreach(int i in entity.ListOfBudgetIds)
+                {
+                    var budgetCategoryEntity =
+                            new BudgetCategory()
+                            {
+                                BudgetId = i,
+                                CategoryId = entity.CategoryId
+                            };
+                    ctx.BudgetCategory.Add(budgetCategoryEntity);
+                }
                 ctx.Categories.Add(entity);
+                //ctx.BudgetCategory.Add(amount);
                 return ctx.SaveChanges() == 1;
             }
         }

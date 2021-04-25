@@ -74,7 +74,6 @@ namespace BudgetPlanner.Services
                         .Budgets
                         .Single(e => e.BudgetId == id && e.OwnerId == _userId);
 
-                //var transactionList = new List<Transaction>();
                 var transactionList =
                     ctx
                         .Transactions
@@ -91,30 +90,57 @@ namespace BudgetPlanner.Services
                                 }
                                 ).ToList();
 
-                //need to add the above linq query to a list.
-
-
-                //var transactionList = new List<TransactionListItem>();
-                //if (entity.ListOfTransactionIds != null)
-                //{
-                //    foreach (var transactionId in entity.ListOfTransactionIds)
-                //    {
-                //        var testTransaction = ts.GetTransactionListItemById(transactionId);
-                //        transactionList.Add(testTransaction);
-                //    };
-                //}
+                var budgetCategoryList =
+                    ctx
+                        .BudgetCategory
+                        .Where(e => e.BudgetId == id)
+                        .ToList();
 
                 var cs = new CategoryService(_userId);
                 var categoryList = new List<CategoryListItem>();
-                if (entity.ListOfCategoryIds != null)
+                //var categoryTest;
+                //foreach (var category in )
+
+                foreach (var categoryItem in budgetCategoryList)
                 {
-                    foreach (var categoryId in entity.ListOfCategoryIds)
-                    {
-                        var testCategory = cs.GetCategoryListItemById(categoryId);
-                        categoryList.Add(testCategory);
-                        //categoryList.Add(ctx.Categories.Find(categoryId).Name);
-                    };
+
+                    var category = cs.GetCategoryListItemById(categoryItem.CategoryId);
+                    //new CategoryListItem
+                    //{
+                    //    CategoryId = category.CategoryId,
+                    //    Name = category.Name
+                    //};
+                    categoryList.Add(category);
                 }
+
+                var categoryTestList = new List<CategoryListItem>();
+
+                foreach (var categoryTest in budgetCategoryList)
+                {
+                    var categoryEntity =
+                      ctx
+                          .Categories
+                          .Where(e => e.CategoryId == categoryTest.CategoryId)
+                           .Select(
+                              e =>
+                                  new CategoryListItem
+                                  {
+                                      Name = e.Name,
+
+                                  }
+                                  );
+                    //categoryTestList.Add(categoryEntity);
+                }
+
+                //if (entity.ListOfCategoryIds != null)
+                //{
+                //    foreach (var categoryId in entity.ListOfCategoryIds)
+                //    {
+                //        var testCategory = cs.GetCategoryListItemById(categoryId);
+                //        categoryList.Add(testCategory);
+                //        //categoryList.Add(ctx.Categories.Find(categoryId).Name);
+                //    };
+                //}
 
                 //return the budget information
                 return
@@ -130,72 +156,6 @@ namespace BudgetPlanner.Services
                     };
             }
         }
-
-        public BudgetDetail BudgetDetailMethod(int id)
-        {
-            var ts = new TransactionService(_userId);
-            List<int> transactionIdList = new List<int>();
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Budgets
-                        .Single(e => e.BudgetId == id && e.OwnerId == _userId);
-
-                //foreach (var transaction in entity.ListOfTransactionIds)
-                //{
-                //    ctx
-                //        .Transactions
-                //        .Where(t => t.BudgetId == id);
-                //    transactionIdList.Add(transaction);
-                //}
-
-                //compile transaction list of Ids and names
-                //var transactionList = ts.GetTransactionListItemById(tId);
-                //foreach (var transactionId in entity.ListOfTransactionIds)
-                //{
-                //    var testTransaction = ts.GetTransactionListItemById(transactionId);
-                //    transactionList.Add(testTransaction);
-                //}
-
-
-                //if (entity.ListOfTransactionIds != null)
-                //{
-                //    foreach (TransactionListItem tli in transactionList.Where(e.BudgetId == tli. )
-                //    {
-                //        entity.ListOfTransactionIds.Add(transaction.TransactionId);
-                //    }
-                //}
-                //compile category list of ids and names
-
-                var cs = new CategoryService(_userId);
-                var categoryList = new List<CategoryListItem>();
-                if (entity.ListOfCategoryIds != null)
-                {
-                    foreach (var categoryId in entity.ListOfCategoryIds)
-                    {
-                        var testCategory = cs.GetCategoryListItemById(categoryId);
-                        categoryList.Add(testCategory);
-                        //categoryList.Add(ctx.Categories.Find(categoryId).Name);
-                    };
-                }
-
-                //return the budget information
-                return
-                    new BudgetDetail
-                    {
-                        BudgetId = entity.BudgetId,
-                        BudgetName = entity.BudgetName,
-                        BudgetAmount = entity.BudgetAmount,
-                        ListOfCategoryIds = entity.ListOfCategoryIds,
-                        //ListOfCategories = entity.ListOfCategories,
-                        ListOfTransactionIds = entity.ListOfTransactionIds,
-                        //ListOfTransactions = entity.ListOfTransactions
-                    };
-            }
-        }
-
 
         public bool UpdateBudget(BudgetEdit model)
         {
