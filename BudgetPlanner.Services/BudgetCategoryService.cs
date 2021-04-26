@@ -22,7 +22,8 @@ namespace BudgetPlanner.Services
                 new BudgetCategory()
                 {
                     BudgetId = model.BudgetId,
-                    CategoryId = model.CategoryId
+                    CategoryId = model.CategoryId,
+                    Amount = model.Amount
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -79,7 +80,7 @@ namespace BudgetPlanner.Services
                 var entity =
                     ctx
                         .BudgetCategory
-                        .Single(e => e.BudgetId == model.BudgetId && e.Budget.OwnerId == _userId);
+                        .Single(e => e.BudgetId == model.BudgetId && e.CategoryId == model.CategoryId);
 
                 entity.BudgetId = model.BudgetId;
                 entity.CategoryId = model.CategoryId;

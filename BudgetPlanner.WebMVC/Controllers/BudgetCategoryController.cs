@@ -73,17 +73,18 @@ namespace BudgetPlanner.WebMVC.Controllers
         }
 
         [HttpPost]
+        [Route("api/BudgetCategory/Edit/{budgetId}/{categoryId}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, BudgetCategoryEdit model)
+        public ActionResult Edit(int budgetId, int categoryId, BudgetCategoryEdit model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            if (model.BudgetId != id)
+            if (model.BudgetId != budgetId && model.CategoryId != categoryId)
             {
-                ModelState.AddModelError("", "Id Mismatch");
+                ModelState.AddModelError("", "BudgetId or CategoryIdMismatch");
                 return View(model);
             }
 
@@ -109,6 +110,7 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        //[Route("BudgetCategoryRoute", "api/BudgetCategory/Delete/{id}/{id2}")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBudgetCategory(int budgetId, int categoryId)
         {
@@ -127,5 +129,11 @@ namespace BudgetPlanner.WebMVC.Controllers
             var service = new BudgetCategoryService(userId);
             return service;
         }
+
+        //public ActionResult BudgetCategoryRoute (int budgetId, int categoryId)
+        //{
+        //    int result = "budgetId :-" budgetId "categoryId :-" categoryId;
+        //    return Content(result);
+        //}
     }
 }

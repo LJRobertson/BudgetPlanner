@@ -262,8 +262,8 @@
     <Content Include="Views\BudgetCategory\Index.cshtml" />
     <Content Include="Views\BudgetCategory\Create.cshtml" />
     <Content Include="Views\BudgetCategory\Details.cshtml" />
-    <Content Include="Views\BudgetCategory\Edit.cshtml" />
     <Content Include="Views\BudgetCategory\Delete.cshtml" />
+    <Content Include="Views\BudgetCategory\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
