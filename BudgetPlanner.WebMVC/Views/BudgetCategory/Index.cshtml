@@ -45,7 +45,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { budgetId = item.BudgetId, categoryId = item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.BudgetId }) |
+            @Html.ActionLink("Details", "Details", new { budgetId = item.BudgetId, categoryId = item.CategoryId }) |
             @Html.ActionLink("Delete", "Delete", new { budgetId = item.BudgetId, categoryId = item.CategoryId })
         </td>
     </tr>

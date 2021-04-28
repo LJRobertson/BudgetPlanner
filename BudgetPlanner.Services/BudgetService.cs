@@ -101,48 +101,44 @@ namespace BudgetPlanner.Services
                 //var categoryTest;
                 //foreach (var category in )
 
-                foreach (var categoryItem in budgetCategoryList)
+                foreach (var testAmount in budgetCategoryList)
                 {
-
-                    var category = cs.GetCategoryListItemById(categoryItem.CategoryId);
-                    //new CategoryListItem
-                    //{
-                    //    CategoryId = category.CategoryId,
-                    //    Name = category.Name
-                    //};
-                    categoryList.Add(category);
+                    var budgetAmount = testAmount.Amount;
+                    var categoryId = testAmount.CategoryId;
+                    var category = cs.GetCategoryById(testAmount.CategoryId).Name;
+                    categoryList.Add(new CategoryListItem
+                    {
+                        CategoryId = categoryId,
+                        Name = category,
+                        CategoryAmount = budgetAmount
+                    });
                 }
 
-                var categoryTestList = new List<CategoryListItem>();
 
-                foreach (var categoryTest in budgetCategoryList)
-                {
-                    var categoryEntity =
-                      ctx
-                          .Categories
-                          .Where(e => e.CategoryId == categoryTest.CategoryId)
-                           .Select(
-                              e =>
-                                  new CategoryListItem
-                                  {
-                                      Name = e.Name,
+                //var categoryTestList = new List<CategoryListItem>();
 
-                                  }
-                                  );
-                    //categoryTestList.Add(categoryEntity);
-                }
+                //var categoryTestAmount =
+                //     ctx
+                //         .BudgetCategory
+                //         .Where(e => e.BudgetId == id);
 
-                //if (entity.ListOfCategoryIds != null)
+
+                //foreach (var categoryTest in budgetCategoryList)
                 //{
-                //    foreach (var categoryId in entity.ListOfCategoryIds)
-                //    {
-                //        var testCategory = cs.GetCategoryListItemById(categoryId);
-                //        categoryList.Add(testCategory);
-                //        //categoryList.Add(ctx.Categories.Find(categoryId).Name);
-                //    };
+                //    var categoryEntity =
+                //      ctx
+                //          .Categories
+                //          .Where(e => e.CategoryId == categoryTest.CategoryId)
+                //           .Select(
+                //              e =>
+                //                  new CategoryListItem
+                //                  {
+                //                      Name = e.Name,
+                //                      //CategoryAmount = 
+                //                  }
+                //                  );
                 //}
 
-                //return the budget information
                 return
                     new BudgetDetail
                     {

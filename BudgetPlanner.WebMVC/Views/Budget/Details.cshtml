@@ -40,7 +40,20 @@
             @foreach (var category in Model.ListOfCategories)
             {
                 <ul>@category.Name</ul>
-                <ul>@category.CategoryAmount</ul>
+                <ul>@string.Format("{0:C}", category.CategoryAmount)</ul>
+                <ul>
+                    @foreach (var transaction in Model.ListOfTransactions)
+                    {
+                        if (transaction.CategoryId == category.CategoryId)
+                        {
+                            <ul>@transaction.TransactionId</ul>
+                            <ul>@transaction.MerchantName</ul>
+                            <ul>@string.Format("{0:C}", transaction.Amount)</ul>
+                            <ul>@transaction.TransactionDate.ToString("MM/dd/yyyy")</ul>
+                            <ul>@transaction.CategoryId</ul>
+                        }
+                    }
+                </ul>
             }
         </dd>
         <dt>
@@ -51,12 +64,12 @@
             {
                 <ul>@item.TransactionId</ul>
                 <ul>@item.MerchantName</ul>
-                <ul>@string.Format("{0:C}",item.Amount)</ul>
+                <ul>@string.Format("{0:C}", item.Amount)</ul>
                 <ul>@item.TransactionDate.ToString("MM/dd/yyyy")</ul>
                 <ul>@item.CategoryId</ul>
             }
             @*@Html.DisplayFor(model => model.ListOfTransactions)*@
-            
+
         </dd>
 
     </dl>

@@ -28,5 +28,6 @@ namespace BudgetPlanner.Models
         public List<int> ListOfTransactionIds { get; set; } = new List<int>();
 
         public virtual List<TransactionListItem> ListOfTransactions { get; set; } = new List<TransactionListItem>();
+
     }
 }

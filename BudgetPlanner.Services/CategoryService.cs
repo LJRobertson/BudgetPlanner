@@ -95,11 +95,42 @@ namespace BudgetPlanner.Services
                         .Categories
                         .Single(e => e.CategoryId == id && e.UserId == _userId);
 
+                var budgetCategoryList =
+                    ctx
+                        .BudgetCategory
+                        .Where(e => e.CategoryId == id)
+                        .ToList();
+
+                var budgetCategoryAmountItem =
+                   ctx
+                       .BudgetCategory
+                       .Where(e => e.CategoryId == id)
+                       .Select(e => e.Amount);
+            
+
+                List<int> budgetIds = new List<int>();
+                foreach (var bc in budgetCategoryList)
+                {
+                    var budget = bc.BudgetId;
+                    var amount = bc.Amount;
+                    budgetIds.Add(budget);
+                }
+
+                foreach (var testAmount in budgetCategoryList)
+                {
+                    var budgetAmount = testAmount.Amount;
+
+                    
+                   // return 
+                }
+
                 return
                     new CategoryDetail
                     {
                         CategoryId = entity.CategoryId,
-                        Name = entity.Name
+                        Name = entity.Name,
+                        //CategoryAmount = budgetCategoryAmountItem
+                        //ListOfBudgets = budgetIds,
                     };
             }
         }
