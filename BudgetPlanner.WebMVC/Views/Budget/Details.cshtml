@@ -39,20 +39,22 @@
         <dd>
             @foreach (var category in Model.ListOfCategories)
             {
-                <ul>@category.Name</ul>
-                <ul>@string.Format("{0:C}", category.CategoryAmount)</ul>
+                <div class="category-header">
+                    <ul>@category.Name          Limit:@string.Format("{0:C}", category.CategoryAmount)</ul>
+                </div>
                 <ul>
                     @foreach (var transaction in Model.ListOfTransactions)
                     {
                         if (transaction.CategoryId == category.CategoryId)
                         {
-                            <ul>@transaction.TransactionId</ul>
-                            <ul>@transaction.MerchantName</ul>
-                            <ul>@string.Format("{0:C}", transaction.Amount)</ul>
-                            <ul>@transaction.TransactionDate.ToString("MM/dd/yyyy")</ul>
-                            <ul>@transaction.CategoryId</ul>
-                        }
+                            <ul>
+                                @transaction.MerchantName
+                            , @string.Format("{0:C}", transaction.Amount)
+                        </ul>
+                        <ul>Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")</ul>
+                        <ul>Category: @transaction.CategoryId     Transaction ID:@transaction.TransactionId</ul>
                     }
+                }
                 </ul>
             }
         </dd>

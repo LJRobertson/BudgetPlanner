@@ -1,4 +1,5 @@
-﻿using BudgetPlanner.Models.BudgetCategory;
+﻿using BudgetPlanner.Data;
+using BudgetPlanner.Models.BudgetCategory;
 using BudgetPlanner.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -24,6 +25,15 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            var ctx = new ApplicationDbContext();
+
+            var budget = new SelectList(ctx.Budgets.ToList(), "BudgetId", "BudgetName");
+
+            ViewBag.Budgets = budget;
+
+            var category = new SelectList(ctx.Categories.ToList(), "CategoryId", "Name");
+            ViewBag.Categories = category;
+
             return View();
         }
 
@@ -31,6 +41,21 @@ namespace BudgetPlanner.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BudgetCategoryCreate model)
         {
+            var ctx = new ApplicationDbContext();
+
+            var budget = ctx.Budgets.Find(model.BudgetId);
+            if (budget == null)
+            {
+                return HttpNotFound("Budget not found.");
+            }
+
+            var category = ctx.Categories.Find(model.CategoryId);
+            if (category == null)
+            {
+                return HttpNotFound("Category not found.");
+            }
+
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -130,10 +155,5 @@ namespace BudgetPlanner.WebMVC.Controllers
             return service;
         }
 
-        //public ActionResult BudgetCategoryRoute (int budgetId, int categoryId)
-        //{
-        //    int result = "budgetId :-" budgetId "categoryId :-" categoryId;
-        //    return Content(result);
-        //}
     }
 }

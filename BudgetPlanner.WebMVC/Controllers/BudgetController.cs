@@ -19,8 +19,20 @@ namespace BudgetPlanner.WebMVC.Controllers
             var service = new BudgetService(userId);
             var model = service.GetBudgets();
 
+
             return View(model);
         }
+
+        //private IEnumerable<SelectListItem> testList() 
+        //{
+        //    IEnumerable<SelectListItem> test = new IEnumerable<SelectListItem>();
+        //    var svc = CreateBudgetService();
+        //    var testBudgetList = svc.GetBudgets();
+        //    foreach (var budgetId in testBudgetList)
+        //    {
+        //        new SelectListItem { Text = test.Add(budgetId.BudgetName), Value = test.Add(budgetId.BudgetId) };
+        //    }
+        //} 
 
         //GET
         public ActionResult Create()
@@ -77,11 +89,11 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit (int id, BudgetEdit model)
+        public ActionResult Edit(int id, BudgetEdit model)
         {
-            if(!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return View(model);
 
-            if(model.BudgetId != id)
+            if (model.BudgetId != id)
             {
                 ModelState.AddModelError("", "Budget ID does not match.");
 

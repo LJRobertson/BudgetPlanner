@@ -1,9 +1,21 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background-image: url('Assets/coins.jpg')*/
+    /*background-image: url('Assets/coins.jpg')*/ 
 }
 
+/*body::before {
+    content: "";
+    background-image: url('Assets/coins.jpg');
+    opacity: 0.50;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    filter: blur (4em);
+}
+*/
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -23,3 +35,12 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* Budget Detail Classes */
+.category-header{
+    border: 1px;
+    border-color: black;
+    background-color: lightblue;
+}
+
