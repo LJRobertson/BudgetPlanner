@@ -28,7 +28,6 @@ namespace BudgetPlanner.WebMVC.Controllers
             var ctx = new ApplicationDbContext();
 
             var budget = new SelectList(ctx.Budgets.ToList(), "BudgetId", "BudgetName");
-
             ViewBag.Budgets = budget;
 
             var category = new SelectList(ctx.Categories.ToList(), "CategoryId", "Name");
@@ -54,7 +53,6 @@ namespace BudgetPlanner.WebMVC.Controllers
             {
                 return HttpNotFound("Category not found.");
             }
-
 
             if (!ModelState.IsValid)
             {

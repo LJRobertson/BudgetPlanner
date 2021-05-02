@@ -1,21 +1,14 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    /*background-image: url('Assets/coins.jpg')*/ 
+    background-image: linear-gradient(to right, rgba(255,255,255,.5), rgba(255,255,255,.5)), url('Assets/coins.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/*body::before {
-    content: "";
-    background-image: url('Assets/coins.jpg');
-    opacity: 0.50;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    filter: blur (4em);
-}
-*/
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -39,8 +32,19 @@ textarea {
 
 /* Budget Detail Classes */
 .category-header{
-    border: 1px;
-    border-color: black;
+    border-width: 12px;
+/*    width: 50px;
+*/    border-color: black;
     background-color: lightblue;
+}
+
+.budget-detail-category-card {
+    border: 5px;
+    border-color: black;
+/*    background-color: antiquewhite;*/
+}
+
+budget-transaction-display {
+    background-color: antiquewhite;
 }
 

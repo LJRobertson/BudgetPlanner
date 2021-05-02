@@ -17,5 +17,8 @@ namespace BudgetPlanner.Models.BudgetCategory
 
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Amount { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal Remaining { get; set; }
     }
 }

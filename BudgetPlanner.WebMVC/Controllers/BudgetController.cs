@@ -23,17 +23,6 @@ namespace BudgetPlanner.WebMVC.Controllers
             return View(model);
         }
 
-        //private IEnumerable<SelectListItem> testList() 
-        //{
-        //    IEnumerable<SelectListItem> test = new IEnumerable<SelectListItem>();
-        //    var svc = CreateBudgetService();
-        //    var testBudgetList = svc.GetBudgets();
-        //    foreach (var budgetId in testBudgetList)
-        //    {
-        //        new SelectListItem { Text = test.Add(budgetId.BudgetName), Value = test.Add(budgetId.BudgetId) };
-        //    }
-        //} 
-
         //GET
         public ActionResult Create()
         {

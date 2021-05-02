@@ -98,46 +98,40 @@ namespace BudgetPlanner.Services
 
                 var cs = new CategoryService(_userId);
                 var categoryList = new List<CategoryListItem>();
-                //var categoryTest;
-                //foreach (var category in )
 
-                foreach (var testAmount in budgetCategoryList)
+                var remainingCategoryAmountList = new List<decimal>();
+
+                foreach (var budgetCategory in budgetCategoryList)
                 {
-                    var budgetAmount = testAmount.Amount;
-                    var categoryId = testAmount.CategoryId;
-                    var category = cs.GetCategoryById(testAmount.CategoryId).Name;
+                    var budgetAmount = budgetCategory.Amount;
+                    var categoryId = budgetCategory.CategoryId;
+                    var category = cs.GetCategoryById(budgetCategory.CategoryId).Name;
+
+                    foreach (TransactionListItem transaction in transactionList.Where(i => i.CategoryId == categoryId))
+                    {
+                        decimal transactionAmount = transaction.Amount;
+                        remainingCategoryAmountList.Add(transactionAmount);
+                    }
+                    decimal remainingCategoryAmount = remainingCategoryAmountList.Sum();
+
                     categoryList.Add(new CategoryListItem
                     {
                         CategoryId = categoryId,
                         Name = category,
-                        CategoryAmount = budgetAmount
-                    });
+                        CategoryAmount = budgetAmount,
+                        RemainingCategoryAmount = remainingCategoryAmount
+                    }); ;
                 }
 
+                List<decimal> remainingBudgetAmountList = new List<decimal>();
 
-                //var categoryTestList = new List<CategoryListItem>();
+                foreach (TransactionListItem transaction in transactionList)
+                {
+                    decimal transactionAmount = transaction.Amount;
+                    remainingBudgetAmountList.Add(transactionAmount);
+                }
 
-                //var categoryTestAmount =
-                //     ctx
-                //         .BudgetCategory
-                //         .Where(e => e.BudgetId == id);
-
-
-                //foreach (var categoryTest in budgetCategoryList)
-                //{
-                //    var categoryEntity =
-                //      ctx
-                //          .Categories
-                //          .Where(e => e.CategoryId == categoryTest.CategoryId)
-                //           .Select(
-                //              e =>
-                //                  new CategoryListItem
-                //                  {
-                //                      Name = e.Name,
-                //                      //CategoryAmount = 
-                //                  }
-                //                  );
-                //}
+                decimal remainingBudgetAmount = remainingBudgetAmountList.Sum();
 
                 return
                     new BudgetDetail
@@ -145,6 +139,7 @@ namespace BudgetPlanner.Services
                         BudgetId = entity.BudgetId,
                         BudgetName = entity.BudgetName,
                         BudgetAmount = entity.BudgetAmount,
+                        RemainingBudgetAmount = remainingBudgetAmount,
                         ListOfCategoryIds = entity.ListOfCategoryIds,
                         ListOfCategories = categoryList,
                         ListOfTransactionIds = entity.ListOfTransactionIds,
@@ -168,58 +163,6 @@ namespace BudgetPlanner.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
-        //public bool UpdateBudget2(BudgetEdit model)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var entity =
-        //            ctx
-        //                .Budgets
-        //                .Single(e => e.BudgetId == model.BudgetId && e.OwnerId == _userId);
-
-        //        //compile transaction list of Ids and names
-        //        var ts = new TransactionService(_userId);
-
-        //        List<int> transactionIdList = entity.ListOfTransactionIds;
-
-        //        foreach (var transactionId in model.ListOfTransactionIds)
-        //        {
-        //            transactionIdList.Add(transactionId);
-        //        }
-
-        //        //compile category list of ids and names
-        //        var cs = new CategoryService(_userId);
-
-        //        var categoryList = new List<CategoryDetail>();
-
-        //        var categoriesToRemove = ctx.BudgetCategory.Where(e => e.BudgetId == entity.BudgetId);
-        //        foreach (BudgetCategory bc in categoriesToRemove)
-        //        {
-        //            ctx.BudgetCategory.Remove(bc);
-        //        }
-
-        //        foreach (int category in model.ListOfCategoryIds)
-        //        {
-        //            var categoryEntity =
-        //                new BudgetCategory()
-        //                {
-        //                    BudgetId = model.BudgetId,
-        //                    CategoryId = category
-        //                };
-        //            ctx.BudgetCategory.Add(categoryEntity);
-        //        }
-
-        //        entity.BudgetName = model.BudgetName;
-        //        entity.BudgetAmount = model.BudgetAmount;
-        //        entity.ListOfCategoryIds = model.ListOfCategoryIds;
-        //        //entity.ListOfCategories = categoryList;
-        //        entity.ListOfTransactionIds = model.ListOfTransactionIds;
-        //        //entity.ListOfTransactions = entity.ListOfTransactionIds;
-
-        //        return ctx.SaveChanges() == 1;
-        //    }
-        //}
 
         public bool DeleteBudget(int budgetId)
         {

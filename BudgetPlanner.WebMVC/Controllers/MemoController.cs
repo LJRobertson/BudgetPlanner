@@ -13,13 +13,13 @@ namespace BudgetPlanner.WebMVC.Controllers
     public class MemoController : Controller
     {
         // GET: Memo
-        //public ActionResult Index()
-        //{
-        //    var userId = Guid.Parse(User.Identity.GetUserId());
-        //    var service = new MemoService(userId);
-        //    var model = service.GetMemos();
-        //    return View(model);
-        //}
+        public ActionResult Index()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new MemoService(userId);
+            var model = service.GetMemos();
+            return View(model);
+        }
 
         public ActionResult Create()
         {

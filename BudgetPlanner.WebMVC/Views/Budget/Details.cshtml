@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.BudgetName)</h2>
 
 <div>
-    <h4>BudgetDetail</h4>
+    <h4>@Html.DisplayFor(model => model.BudgetName) Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,14 +19,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BudgetName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BudgetName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.BudgetAmount)
         </dt>
 
@@ -34,28 +26,38 @@
             @Html.DisplayFor(model => model.BudgetAmount)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.RemainingBudgetAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemainingBudgetAmount)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.ListOfCategories)
         </dt>
         <dd>
             @foreach (var category in Model.ListOfCategories)
             {
-                <div class="category-header">
-                    <ul>@category.Name          Limit:@string.Format("{0:C}", category.CategoryAmount)</ul>
-                </div>
-                <ul>
-                    @foreach (var transaction in Model.ListOfTransactions)
-                    {
-                        if (transaction.CategoryId == category.CategoryId)
-                        {
-                            <ul>
-                                @transaction.MerchantName
-                            , @string.Format("{0:C}", transaction.Amount)
+                <div class="budget-detail-category-card">
+                    <div class="category-header">
+                        <ul>@category.Name          Limit:@string.Format("{0:C}", category.CategoryAmount)      Remaining: @string.Format("{0:C}", category.RemainingCategoryAmount)</ul>
+                    </div>
+                    <div class="budget-transaction-display">
+                        <ul>
+                            @foreach (var transaction in Model.ListOfTransactions)
+                            {
+                                if (transaction.CategoryId == category.CategoryId)
+                                {
+                                    <ul>
+                                        <h4>@transaction.MerchantName</h4>
+                                        , @string.Format("{0:C}", transaction.Amount)
+                                    </ul>
+                                    <ul>Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")</ul>
+                                }
+                            }
                         </ul>
-                        <ul>Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")</ul>
-                        <ul>Category: @transaction.CategoryId     Transaction ID:@transaction.TransactionId</ul>
-                    }
-                }
-                </ul>
+                    </div>
+                </div>
             }
         </dd>
         <dt>
@@ -64,11 +66,11 @@
         <dd>
             @foreach (var item in Model.ListOfTransactions)
             {
-                <ul>@item.TransactionId</ul>
+                @*<ul>@item.TransactionId</ul>*@
                 <ul>@item.MerchantName</ul>
                 <ul>@string.Format("{0:C}", item.Amount)</ul>
                 <ul>@item.TransactionDate.ToString("MM/dd/yyyy")</ul>
-                <ul>@item.CategoryId</ul>
+                @*<ul>@item.CategoryId</ul>*@
             }
             @*@Html.DisplayFor(model => model.ListOfTransactions)*@
 

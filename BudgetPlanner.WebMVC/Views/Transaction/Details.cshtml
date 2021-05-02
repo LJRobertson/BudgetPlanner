@@ -57,6 +57,17 @@
         <dd>
             @Html.DisplayFor(model => model.CategoryId)
         </dd>
+        
+        @if (Model.MemoContent != null)
+        {
+        <dt>
+            @Html.DisplayNameFor(model => model.MemoContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemoContent)
+        </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.ExcludeTransaction)

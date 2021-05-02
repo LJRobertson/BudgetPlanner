@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetPlanner.Models.Memo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -31,5 +32,8 @@ namespace BudgetPlanner.Models.Transaction
 
         [Display(Name = "Exclude Transaction")]
         public bool ExcludeTransaction { get; set; }
+
+        [Display(Name = "Memo")]
+        public virtual string MemoContent { get; set; }
     }
 }

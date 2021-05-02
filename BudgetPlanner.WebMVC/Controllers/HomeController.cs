@@ -10,9 +10,6 @@ namespace BudgetPlanner.WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            //ViewBag.Budget = new SelectList(model, "BudgetId", "Name");
-
-
             return View();
         }
 

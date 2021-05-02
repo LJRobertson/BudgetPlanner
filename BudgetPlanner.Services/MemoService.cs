@@ -33,40 +33,48 @@ namespace BudgetPlanner.Services
             }
         }
 
-        //public IEnumerable<MemoListItem> GetMemos()
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .Memos
-        //                .Where(e => e.UserId == _userId)
-        //                .Select(
-        //                    e =>
-        //                        new MemoListItem
-        //                        {
-        //                            TransactionId = e.TransactionId,
-        //                            MemoContent = e.MemoContent
-        //                        }
-        //                       );
-        //        return query.ToArray();
-        //    }
-        //}
+        public IEnumerable<MemoListItem> GetMemos()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Memos
+                        .Where(e => e.Transaction.UserId == _userId)
+                        .Select(
+                            e =>
+                                new MemoListItem
+                                {
+                                    TransactionId = e.TransactionId,
+                                    MemoContent = e.MemoContent
+                                }
+                              );
+                return query.ToArray();
+            }
+        }
 
         public MemoDetail GetMemoById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Memos
-                        .Single(e => e.TransactionId == id);
-                return
-                        new MemoDetail
-                        {
-                            TransactionId = entity.TransactionId,
-                            MemoContent = entity.MemoContent
-                        };
+                try
+                {
+                    var entity =
+                        ctx
+                            .Memos
+                            .Single(e => e.TransactionId == id);
+
+                    return
+                          new MemoDetail
+                          {
+                              TransactionId = entity.TransactionId,
+                              MemoContent = entity.MemoContent
+                          };
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 

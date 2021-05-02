@@ -117,6 +117,28 @@ namespace BudgetPlanner.Services
                         .Transactions
                         .Single(e => e.TransactionId == id && e.UserId == _userId);
 
+                var memoService = new MemoService(_userId);
+
+                var transactionMemo = memoService.GetMemoById(id);
+                string memoContentString;
+                if (transactionMemo == null)
+                {
+                    memoContentString = null;
+                }
+
+                else
+                {
+                    memoContentString = transactionMemo.MemoContent;
+                }
+                //send memos to a list, then look for the ID
+
+                //string memo = ctx.Memos.SingleOrDefault(e => e.TransactionId == id).MemoContent;
+
+                //var memo =
+                //    ctx
+                //        .Memos
+                //        .Single(e => e.TransactionId == id);
+
                 return
                     new TransactionDetail
                     {
@@ -126,7 +148,9 @@ namespace BudgetPlanner.Services
                         TransactionDate = entity.TransactionDate,
                         MerchantName = entity.MerchantName,
                         CategoryId = entity.CategoryId,
-                        ExcludeTransaction = entity.ExcludeTransaction
+                        ExcludeTransaction = entity.ExcludeTransaction,
+                        MemoContent = memoContentString 
+                        //Add nullable memo 
                     };
             }
         }
