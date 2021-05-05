@@ -4665,12 +4665,12 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
+    background-color: #5E987C;
+    border-color: #5E7A98;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
-}
+    color: #D5E2DC;
+ }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #fff;
@@ -4680,7 +4680,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #D5E2DC;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -5036,11 +5036,13 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: transparent;
 }
 .jumbotron h1,
 .jumbotron .h1 {
-  color: inherit;
+   color: inherit;
+   font-family: fantasy;
+   color: #507D67;
 }
 .jumbotron p {
   margin-bottom: 15px;

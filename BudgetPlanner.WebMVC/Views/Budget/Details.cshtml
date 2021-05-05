@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<div class="budget-header text-center">
 <h2>@Html.DisplayFor(model => model.BudgetName)</h2>
+    <h4>@Html.DisplayFor(model => model.BudgetName) Details</h4>
+</div>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.BudgetName) Details</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,56 +27,47 @@
             @Html.DisplayFor(model => model.BudgetAmount)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.RemainingBudgetAmount)
+            @Html.DisplayNameFor(model => model.AmountSpent)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RemainingBudgetAmount)
+            @Html.DisplayFor(model => model.AmountSpent)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ListOfCategories)
         </dt>
         <dd>
-            @foreach (var category in Model.ListOfCategories)
-            {
-                <div class="budget-detail-category-card">
-                    <div class="category-header">
-                        <ul>@category.Name          Limit:@string.Format("{0:C}", category.CategoryAmount)      Remaining: @string.Format("{0:C}", category.RemainingCategoryAmount)</ul>
-                    </div>
-                    <div class="budget-transaction-display">
-                        <ul>
-                            @foreach (var transaction in Model.ListOfTransactions)
-                            {
-                                if (transaction.CategoryId == category.CategoryId)
+            <div class="budget-detail-category-container col-xl-1">
+                @foreach (var category in Model.ListOfCategories)
+                {
+                    <div class="budget-detail-category-card ">
+                        <div class="category-header text-center">
+                            @category.Name
+                            <br />
+                            Limit:@string.Format("{0:C}", category.CategoryAmount)      Spent: @string.Format("{0:C}", category.AmountSpent)     Available: @string.Format("{0:C}", category.RemainingCategoryAmount)
+                        </div>
+                        <div class="budget-transaction-display">
+                            <ul>
+                                @foreach (var transaction in Model.ListOfTransactions)
                                 {
-                                    <ul>
-                                        <h4>@transaction.MerchantName</h4>
-                                        , @string.Format("{0:C}", transaction.Amount)
-                                    </ul>
-                                    <ul>Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")</ul>
+                                    if (transaction.CategoryId == category.CategoryId)
+                                    {
+                                        <ul>
+                                            <h4>@transaction.MerchantName</h4>
+                                            , @string.Format("{0:C}", transaction.Amount)
+                                        </ul>
+                                        <ul>
+                                            Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
+                                        <hr />
+                                        </ul>
+                                    }
                                 }
-                            }
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ListOfTransactions)
-        </dt>
-        <dd>
-            @foreach (var item in Model.ListOfTransactions)
-            {
-                @*<ul>@item.TransactionId</ul>*@
-                <ul>@item.MerchantName</ul>
-                <ul>@string.Format("{0:C}", item.Amount)</ul>
-                <ul>@item.TransactionDate.ToString("MM/dd/yyyy")</ul>
-                @*<ul>@item.CategoryId</ul>*@
-            }
-            @*@Html.DisplayFor(model => model.ListOfTransactions)*@
-
-        </dd>
-
     </dl>
 </div>
 <p>

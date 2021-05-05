@@ -31,20 +31,44 @@ textarea {
 
 
 /* Budget Detail Classes */
-.category-header{
-    border-width: 12px;
-/*    width: 50px;
-*/    border-color: black;
-    background-color: lightblue;
+.budget-detail-category-container {
+    border: 2px solid black;
+    border-radius: 3em;
+    overflow: hidden;
+}
+
+.category-header {
+    background-color: #5E987C;
 }
 
 .budget-detail-category-card {
-    border: 5px;
-    border-color: black;
-/*    background-color: antiquewhite;*/
+    background: linear-gradient(to right, rgba(220,238,243,.5), rgba(220,238,243,.5));
 }
 
-budget-transaction-display {
+ .budget-detail-category-card ul {
+    margin: 0px; 
+ }
+
+.budget-detail-category-card hr {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+
+/*.budget-transaction-display {
     background-color: antiquewhite;
 }
+*/
 
+
+/*TRANSACTIONS
+CreateTransaction
+*/
+.new-transaction-container {
+    background: linear-gradient(to right, rgba(235,235,235,.5), rgba(235,235,235,.5));
+    border: 0.15em solid slategray;
+    border-radius: 3em;
+    overflow: hidden;
+    padding: 3em 5em 3em 5em;
+}

@@ -19,24 +19,42 @@ namespace BudgetPlanner.Services
 
         public bool CreateTransaction(TransactionCreate model)
         {
-            var entity =
-                new Transaction()
-                {
-                    UserId = _userId,
-                    Name = model.Name,
-                    Amount = model.Amount,
-                    TransactionDate = model.TransactionDate,
-                    BudgetId = model.BudgetId,
-                    MerchantName = model.MerchantName,
-                    CategoryId = model.CategoryId,
-                    ExcludeTransaction = model.ExcludeTransaction
-                };
+            var ctx = new ApplicationDbContext();
 
-            using (var ctx = new ApplicationDbContext())
+            var entity =
+                    new Transaction()
+                    {
+                        UserId = _userId,
+                        Name = model.Name,
+                        Amount = model.Amount,
+                        TransactionDate = model.TransactionDate,
+                        BudgetId = model.BudgetId,
+                        MerchantName = model.MerchantName,
+                        CategoryId = model.CategoryId,
+                        ExcludeTransaction = model.ExcludeTransaction
+                    };
+
+            var budgetCategoryEntity =
+                ctx.
+                    BudgetCategory
+                    .ToList()
+                    .SingleOrDefault(e => e.CategoryId == model.CategoryId);
+
+            if (budgetCategoryEntity == null)
             {
+                var newBudgetCategory =
+                    new BudgetCategory
+                    {
+                        BudgetId = model.BudgetId,
+                        CategoryId = model.CategoryId
+                    };
+
+                ctx.BudgetCategory.Add(newBudgetCategory);
+                ctx.SaveChanges();
+            };
+            
                 ctx.Transactions.Add(entity);
                 return ctx.SaveChanges() == 1;
-            }
         }
 
         public IEnumerable<TransactionListItem> GetTransactions()

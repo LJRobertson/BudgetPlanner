@@ -18,6 +18,10 @@ namespace BudgetPlanner.Models.Category
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal CategoryAmount { get; set; }
 
+        [Display(Name = "Amount Spent")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public decimal AmountSpent { get; set; }
+
         [Display(Name = "Remaining Balance")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal RemainingCategoryAmount { get; set; }

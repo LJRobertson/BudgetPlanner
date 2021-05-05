@@ -21,9 +21,9 @@ namespace BudgetPlanner.Models
         [DisplayFormat(DataFormatString ="{0:C}")]
         public decimal BudgetAmount { get; set; }
 
-        [Display(Name = "Remaining Balance")]
+        [Display(Name = "Amount Spent")]
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public decimal RemainingBudgetAmount { get; set; }
+        public decimal AmountSpent { get; set; }
 
         public List<int> ListOfCategoryIds { get; set; } = new List<int>();
 

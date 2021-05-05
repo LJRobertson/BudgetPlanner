@@ -57,6 +57,7 @@
     <Compile Include="BudgetCategoryService.cs" />
     <Compile Include="BudgetService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="IBudgetService.cs" />
     <Compile Include="MemoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionService.cs" />

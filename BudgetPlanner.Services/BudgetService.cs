@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BudgetPlanner.Services
 {
-    public class BudgetService
+    public class BudgetService : IBudgetService
     {
         private readonly Guid _userId;
 
@@ -99,10 +99,10 @@ namespace BudgetPlanner.Services
                 var cs = new CategoryService(_userId);
                 var categoryList = new List<CategoryListItem>();
 
-                var remainingCategoryAmountList = new List<decimal>();
 
                 foreach (var budgetCategory in budgetCategoryList)
                 {
+                    var categoryAmountSpentList = new List<decimal>();
                     var budgetAmount = budgetCategory.Amount;
                     var categoryId = budgetCategory.CategoryId;
                     var category = cs.GetCategoryById(budgetCategory.CategoryId).Name;
@@ -110,16 +110,17 @@ namespace BudgetPlanner.Services
                     foreach (TransactionListItem transaction in transactionList.Where(i => i.CategoryId == categoryId))
                     {
                         decimal transactionAmount = transaction.Amount;
-                        remainingCategoryAmountList.Add(transactionAmount);
+                        categoryAmountSpentList.Add(transactionAmount);
                     }
-                    decimal remainingCategoryAmount = remainingCategoryAmountList.Sum();
+                    //decimal amountSpent = categoryAmountSpentList.Sum();
 
                     categoryList.Add(new CategoryListItem
                     {
                         CategoryId = categoryId,
                         Name = category,
                         CategoryAmount = budgetAmount,
-                        RemainingCategoryAmount = remainingCategoryAmount
+                        AmountSpent = categoryAmountSpentList.Sum(),
+                        RemainingCategoryAmount = budgetAmount - categoryAmountSpentList.Sum(),
                     }); ;
                 }
 
@@ -139,7 +140,7 @@ namespace BudgetPlanner.Services
                         BudgetId = entity.BudgetId,
                         BudgetName = entity.BudgetName,
                         BudgetAmount = entity.BudgetAmount,
-                        RemainingBudgetAmount = remainingBudgetAmount,
+                        AmountSpent = remainingBudgetAmount,
                         ListOfCategoryIds = entity.ListOfCategoryIds,
                         ListOfCategories = categoryList,
                         ListOfTransactionIds = entity.ListOfTransactionIds,

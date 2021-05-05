@@ -8,6 +8,7 @@ namespace BudgetPlanner.WebMVC
     {
         public void Configuration(IAppBuilder app)
         {
+            //ADD DEPENDENCY INJECTION INHERITANCE HERE
             ConfigureAuth(app);
         }
     }
