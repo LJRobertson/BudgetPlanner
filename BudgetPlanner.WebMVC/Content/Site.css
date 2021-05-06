@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: linear-gradient(to right, rgba(255,255,255,.5), rgba(255,255,255,.5)), url('Assets/coins.jpg');
+    background-image: linear-gradient(to right, rgba(255,255,255,.5), rgba(255,255,255,.5)), url('Assets/coins2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -31,6 +31,19 @@ textarea {
 
 
 /* Budget Detail Classes */
+.budget-header h2{
+    font-weight: bold;
+}
+
+.budget-detail-limits {
+    background-color: #4E3D42;
+    color: #E3DBDB;
+    padding: 15px 0;
+}
+.budget-detail-limits span{
+    font-weight: bold;
+}
+
 .budget-detail-category-container {
     border: 2px solid black;
     border-radius: 3em;
@@ -39,6 +52,7 @@ textarea {
 
 .category-header {
     background-color: #5E987C;
+    padding: 10px 0;
 }
 
 .budget-detail-category-card {
@@ -54,6 +68,15 @@ textarea {
     margin-bottom: 0px;
     border: 0;
     border-top: 1px solid #eeeeee;
+    width: 75%;
+}
+
+#category-name{
+    font-weight: bold;
+}
+
+#category-limts {
+    font-weight: bold;
 }
 
 /*.budget-transaction-display {

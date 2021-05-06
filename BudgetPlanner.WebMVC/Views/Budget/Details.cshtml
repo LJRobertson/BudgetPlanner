@@ -4,71 +4,56 @@
     ViewBag.Title = "Details";
 }
 <div class="budget-header text-center">
-<h2>@Html.DisplayFor(model => model.BudgetName)</h2>
+    <h2>@Html.DisplayFor(model => model.BudgetName)</h2>
     <h4>@Html.DisplayFor(model => model.BudgetName) Details</h4>
 </div>
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BudgetId)
-        </dt>
-
+    <div class="budget-detail-category-container col-xl-1">
+            <dd>
+                <div class="budget-detail-limits text-center">
+                    <span>@Html.DisplayNameFor(model => model.BudgetAmount):</span> @Html.DisplayFor(model => model.BudgetAmount)
+                    <br />
+                    <span>@Html.DisplayNameFor(model => model.AmountSpent):</span> @Html.DisplayFor(model => model.AmountSpent)
+                </div>
+            </dd>
         <dd>
-            @Html.DisplayFor(model => model.BudgetId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BudgetAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BudgetAmount)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AmountSpent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AmountSpent)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ListOfCategories)
-        </dt>
-        <dd>
-            <div class="budget-detail-category-container col-xl-1">
-                @foreach (var category in Model.ListOfCategories)
-                {
-                    <div class="budget-detail-category-card ">
-                        <div class="category-header text-center">
-                            @category.Name
-                            <br />
-                            Limit:@string.Format("{0:C}", category.CategoryAmount)      Spent: @string.Format("{0:C}", category.AmountSpent)     Available: @string.Format("{0:C}", category.RemainingCategoryAmount)
-                        </div>
-                        <div class="budget-transaction-display">
-                            <ul>
-                                @foreach (var transaction in Model.ListOfTransactions)
-                                {
-                                    if (transaction.CategoryId == category.CategoryId)
-                                    {
-                                        <ul>
-                                            <h4>@transaction.MerchantName</h4>
-                                            , @string.Format("{0:C}", transaction.Amount)
-                                        </ul>
-                                        <ul>
-                                            Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
-                                        <hr />
-                                        </ul>
-                                    }
-                                }
-                            </ul>
-                        </div>
+            @foreach (var category in Model.ListOfCategories)
+            {
+                <div class="budget-detail-category-card ">
+                    <div class="category-header text-center">
+                        <span id="category-name">@category.Name</span>
+                        <span id="category-limits">Limit:@string.Format("{0:C}", category.CategoryAmount)      Spent: @string.Format("{0:C}", category.AmountSpent)     Available: @string.Format("{0:C}", category.RemainingCategoryAmount)</span>
                     </div>
-                }
-            </div>
-        </dd>
-    </dl>
+                    <div class="budget-transaction-display">
+                        <ul>
+                            @foreach (var transaction in Model.ListOfTransactions)
+                            {
+                                if (transaction.CategoryId == category.CategoryId)
+                                {
+                                    <ul>
+                                        <h4>@transaction.MerchantName</h4>
+                                        , @string.Format("{0:C}", transaction.Amount)
+                                    </ul>
+                                    <ul>
+                                        Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
+                                        <hr />
+                                    </ul>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+    </div>
+    </dd>
+</div>
+<div class="viewing-message text-center">
+    <p>
+        You are currently viewing budget number:
+        @Html.DisplayFor(model => model.BudgetId), @Html.DisplayFor(model => model.BudgetName)
+    </p>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetId }) |

@@ -4255,6 +4255,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
 }
+
+.navbar-header span {
+    font-family: 'Abril Fatface', cursive;
+}
 .navbar-collapse {
   padding-right: 15px;
   padding-left: 15px;
@@ -5041,7 +5045,7 @@ a.badge:focus {
 .jumbotron h1,
 .jumbotron .h1 {
    color: inherit;
-   font-family: fantasy;
+   font-family: 'Abril Fatface', cursive;
    color: #507D67;
 }
 .jumbotron p {
