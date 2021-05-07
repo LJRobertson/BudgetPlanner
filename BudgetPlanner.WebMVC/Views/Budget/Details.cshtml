@@ -4,44 +4,65 @@
     ViewBag.Title = "Details";
 }
 <div class="budget-header text-center">
-    <h2>@Html.DisplayFor(model => model.BudgetName)</h2>
-    <h4>@Html.DisplayFor(model => model.BudgetName) Details</h4>
+    <display-4>@Html.DisplayFor(model => model.BudgetName)</display-4>
+    <h4>Budget Details</h4>
 </div>
 
 <div>
     <hr />
-    <div class="budget-detail-category-container col-xl-1">
-            <dd>
-                <div class="budget-detail-limits text-center">
-                    <span>@Html.DisplayNameFor(model => model.BudgetAmount):</span> @Html.DisplayFor(model => model.BudgetAmount)
-                    <br />
-                    <span>@Html.DisplayNameFor(model => model.AmountSpent):</span> @Html.DisplayFor(model => model.AmountSpent)
-                </div>
-            </dd>
+    <div class="budget-detail-category-container">
+        <dd>
+            <div class="budget-detail-limits text-center">
+                <span>@Html.DisplayNameFor(model => model.BudgetAmount):</span> @Html.DisplayFor(model => model.BudgetAmount)
+                <br />
+                <span>@Html.DisplayNameFor(model => model.AmountSpent):</span> @Html.DisplayFor(model => model.AmountSpent)
+            </div>
+        </dd>
         <dd>
             @foreach (var category in Model.ListOfCategories)
             {
-                <div class="budget-detail-category-card ">
+                <div class="budget-detail-category-card">
+                    @*<div class="category-header text-center d-flex justify-content-between">
+                            <span id="category-name">@category.Name</span>
+                            <span id="category-limits">Limit:@string.Format("{0:C}", category.CategoryAmount)   Spent: @string.Format("{0:C}", category.AmountSpent)     Available: @string.Format("{0:C}", category.RemainingCategoryAmount)</span>
+                        </div>*@
                     <div class="category-header text-center">
                         <span id="category-name">@category.Name</span>
-                        <span id="category-limits">Limit:@string.Format("{0:C}", category.CategoryAmount)      Spent: @string.Format("{0:C}", category.AmountSpent)     Available: @string.Format("{0:C}", category.RemainingCategoryAmount)</span>
+
+                        <div class="category-header-container">
+                            <div class="category-header-row row">
+                                <div class="category-header-limits col-sm-4">
+                                    <span>Limit:</span> @string.Format("{0:C}", category.CategoryAmount)
+                                </div>
+                                <div class="category-header-limits col-sm-4">
+                                    <span>Spent:</span> @string.Format("{0:C}", category.AmountSpent)
+                                </div>
+                                <div class="category-header-limits col-sm-4">
+                                    <span>Available:</span> @string.Format("{0:C}", category.RemainingCategoryAmount)
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="budget-transaction-display">
                         <ul>
-                            @foreach (var transaction in Model.ListOfTransactions)
-                            {
-                                if (transaction.CategoryId == category.CategoryId)
+                            <div class="category-transaction container">
+                                @foreach (var transaction in Model.ListOfTransactions)
                                 {
-                                    <ul>
-                                        <h4>@transaction.MerchantName</h4>
-                                        , @string.Format("{0:C}", transaction.Amount)
-                                    </ul>
-                                    <ul>
-                                        Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
+                                    if (transaction.CategoryId == category.CategoryId)
+                                    {
+                                        <div class="category-transaction-row row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                                            <div class="category-transaction-item col">
+                                                <span>@transaction.MerchantName</span>
+                                                 @string.Format("{0:C}", transaction.Amount)
+                                            </div>
+                                            <div class="category-transaction-item col">
+                                                Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
+                                            </div>
+                                        </div>
                                         <hr />
-                                    </ul>
+                                    }
                                 }
-                            }
+                            </div>
                         </ul>
                     </div>
                 </div>

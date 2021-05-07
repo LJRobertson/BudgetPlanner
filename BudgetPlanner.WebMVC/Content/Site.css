@@ -31,12 +31,15 @@ textarea {
 
 
 /* Budget Detail Classes */
-.budget-header h2{
+.budget-header display-4 {
+    font-family: 'Abril Fatface', cursive;
     font-weight: bold;
+    color: #37515F;
+    font-size: calc(1.475rem + 2.7vw);
 }
 
 .budget-detail-limits {
-    background-color: #4E3D42;
+    background-color: #37515F;
     color: #E3DBDB;
     padding: 15px 0;
 }
@@ -64,7 +67,7 @@ textarea {
  }
 
 .budget-detail-category-card hr {
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 0px;
     border: 0;
     border-top: 1px solid #eeeeee;
@@ -77,6 +80,14 @@ textarea {
 
 #category-limts {
     font-weight: bold;
+}
+
+.category-header-limits span {
+    font-weight: bold;
+}
+
+.budget-transaction-display ul {
+    padding: 1em 4em;
 }
 
 /*.budget-transaction-display {
