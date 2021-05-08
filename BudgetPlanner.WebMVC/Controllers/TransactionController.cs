@@ -83,6 +83,14 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         public ActionResult Edit(int id)
         {
+            var ctx = new ApplicationDbContext();
+
+            var budget = new SelectList(ctx.Budgets.ToList(), "BudgetId", "BudgetName");
+            ViewBag.Budgets = budget;
+
+            var category = new SelectList(ctx.Categories.ToList(), "CategoryId", "Name");
+            ViewBag.Categories = category;
+
             var service = CreateTransactionService();
             var detail = service.GetTransactionById(id);
             var model =

@@ -28,6 +28,7 @@ namespace BudgetPlanner.Models.Transaction
         public DateTime TransactionDate { get; set; }
 
         [Required]
+        [Display(Name = "Category Name")]
         public int CategoryId { get; set; }
     }
 }

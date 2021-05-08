@@ -88,12 +88,22 @@ textarea {
 
 .general-button{
     background-color: #EEB868;
+    margin: 0.75em;
 }
 
 .general-button:hover{
     background-color: #E4959E;
     font-family: 'Abril Fatface', cursive;
 }
+
+.table-hover tbody tr:hover td {
+    background-color: rgba(220,238,243,.55);
+}
+
+.table-hover tbody tr:hover th {
+    background-color: #5E987C;
+}
+
 
 
 
@@ -153,14 +163,16 @@ textarea {
     padding: 1em 4em;
 }
 
+.budget-transaction-list{
+    margin: 1em;
+}
 /*.budget-transaction-display {
     background-color: antiquewhite;
 }
 */
-
 /*CATEGORIES*/
 /*Category Details*/
-.category-budget-list{
+.category-budget-list {
     padding: 1em 0;
 }
 
@@ -175,5 +187,13 @@ CreateTransaction
     overflow: hidden;
     padding: 3em 5em 3em 5em;
     /*    margin: 3em;
-*/ 
+*/
+}
+
+.borderless th{
+    border: none;
+}
+
+
+
 }

@@ -32,13 +32,13 @@ namespace BudgetPlanner.Services
                         CategoryId = model.CategoryId,
                     };
 
-            var budgetCategoryEntity =
+            var budgetCategoryList =
                 ctx.
                     BudgetCategory
-                    .ToList()
-                    .SingleOrDefault(e => e.CategoryId == model.CategoryId);
+                    .Where(e => e.CategoryId == model.CategoryId)
+                    .ToList();
 
-            if (budgetCategoryEntity == null)
+            if (budgetCategoryList == null)
             {
                 var newBudgetCategory =
                     new BudgetCategory
@@ -46,10 +46,7 @@ namespace BudgetPlanner.Services
                         BudgetId = model.BudgetId,
                         CategoryId = model.CategoryId
                     };
-
-                ctx.BudgetCategory.Add(newBudgetCategory);
-                ctx.SaveChanges();
-            };
+            }
             
                 ctx.Transactions.Add(entity);
                 return ctx.SaveChanges() == 1;

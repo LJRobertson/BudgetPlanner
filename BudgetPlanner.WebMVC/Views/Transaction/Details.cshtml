@@ -4,64 +4,68 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="custom-header text-center d-flex">
+    <span>Transaction Details</span>
+</div>
 
 <div>
-    <h4>TransactionDetail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TransactionId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TransactionId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MerchantName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MerchantName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TransactionDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TransactionDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
-
-        @if (Model.MemoContent != null)
-        {
+    <div class="general-use-container text-center">
+        <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.MemoContent)
+                @Html.DisplayNameFor(model => model.TransactionId)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.MemoContent)
+                @Html.DisplayFor(model => model.TransactionId)
             </dd>
-        }
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.MerchantName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MerchantName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Amount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TransactionDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TransactionDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
+
+            @if (Model.MemoContent != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.MemoContent)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MemoContent)
+                </dd>
+            }
+
+        </dl>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new {id = Model.TransactionId }) |

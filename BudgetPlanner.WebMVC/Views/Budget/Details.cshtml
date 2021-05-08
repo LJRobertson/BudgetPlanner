@@ -61,62 +61,45 @@
                         </div>
                     </div>
 
-
-                    <table>
-                        <tr>
-                            <th>
-                                Merchant Name
-                            </th>
-                            <th>
-                                Amount
-                            </th>
-                            <th>
-                                Date
-                            </th>
-                        </tr>
-                        <tr>
+                    <div class="table-responsive-sm">
+                        <table class="budget-transaction-list table">
+                            <tr>
+                                <th>
+                                    Merchant Name
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
                             @foreach (var testTransaction in Model.ListOfTransactions)
                             {
-                                if (testTransaction.CategoryId == category.CategoryId)
-                                {
-                                    <div class="category-transaction-row row">
-                                        <div class="category-transaction-item col">
-                                            <span>@testTransaction.MerchantName</span>
-                                            @string.Format("{0:C}", testTransaction.Amount)
-                                        </div>
-                                        <div class="category-transaction-item" colspan="2">
-                                            Date: @testTransaction.TransactionDate.ToString("MM/dd/yyyy")
-                                        </div>
-                                    </div>
-                                    <hr />
-                                }
-
-                            }
-                        </tr>
-                    </table>
-
-                    <div class="budget-transaction-display">
-                        <ul>
-                            <div class="category-transaction container">
-                                @foreach (var transaction in Model.ListOfTransactions)
-                                {
-                                    if (transaction.CategoryId == category.CategoryId)
+                                <tr>
+                                    @if (testTransaction.CategoryId == category.CategoryId)
                                     {
-                                        <div class="category-transaction-row row">
-                                            <div class="category-transaction-item col">
-                                                <span>@transaction.MerchantName</span>
-                                                @string.Format("{0:C}", transaction.Amount)
+                                        <td>
+                                            <div class="category-transaction-item">
+                                                <span>@testTransaction.MerchantName</span>
                                             </div>
-                                            <div class="category-transaction-item" colspan="2">
-                                                Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
+                                        </td>
+                                        <td>
+                                            <div class="category-transaction-item">
+                                                @string.Format("{0:C}", testTransaction.Amount)
                                             </div>
-                                        </div>
-                                        <hr />
+                                        </td>
+                                        <td>
+                                            <div class="category-transaction-item">
+                                                Date: @testTransaction.TransactionDate.ToString("MM/dd/yyyy")
+                                            </div>
+                                        </td>
                                     }
-                                }
-                            </div>
-                        </ul>
+                                </tr>
+                            }
+                        </table>
                     </div>
+
                 </div>
             }
         </dd>
