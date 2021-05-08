@@ -29,6 +29,12 @@ textarea {
     max-width: 280px;
 }
 
+/*GENERAL USE CONTAINER*/
+.general-use-container {
+    border: 2px solid black;
+    border-radius: 3em;
+    overflow: hidden;
+}
 
 /* Budget Detail Classes */
 .custom-header span{

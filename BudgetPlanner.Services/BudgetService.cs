@@ -151,6 +151,26 @@ namespace BudgetPlanner.Services
             }
         }
 
+        public BudgetListItem GetBudgetListItemById(int id, Guid userId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Budgets
+                        .Single(e => e.BudgetId == id && e.OwnerId == userId);
+
+                return
+                    new BudgetListItem
+                    {
+                        BudgetId = entity.BudgetId,
+                        BudgetName = entity.BudgetName,
+                        BudgetAmount = entity.BudgetAmount,
+                    };
+            }
+        }
+
+
         public bool UpdateBudget(BudgetEdit model, Guid userId)
         {
             using (var ctx = new ApplicationDbContext())

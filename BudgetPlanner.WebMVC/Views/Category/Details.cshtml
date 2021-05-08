@@ -10,51 +10,53 @@
 </div>
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+    <div class="general-use-container">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ListOfBudgets)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ListOfBudgets)
+            </dt>
 
-        <dd>
-            @foreach (var budget in Model.ListOfBudgets)
-            {
-                @budget.BudgetName; @budget.BudgetId
+            <dd>
+                @foreach (var budget in Model.ListOfBudgets)
+                {
+                    @budget.BudgetName; @budget.BudgetId
+                }
 
-                //if (Model.CategoryAmount != null)
-                //{
+                @*//if (Model.CategoryAmount != null)
+                    //{
 
-                //    string.Format("{0:C}", Model.CategoryAmount);
-                //}
+                    //    string.Format("{0:C}", Model.CategoryAmount);
+                    //}*@
 
-            <div class="category-header-container">
-                <div class="category-header-row row">
-                    <div class="category-header-limits col-sm-4">
-                        <span>Limit:</span> @string.Format("{0:C}", budget.BudgetName)
-                    </div>
-                    <div class="category-header-limits col-sm-4">
-                        <span>Spent:</span> @string.Format("{0:C}", budget.BudgetId)
-                    </div>
-                    <div class="category-header-limits col-sm-4">
-                        <span>Available:</span> @string.Format("{0:C}", budget.BudgetAmount)
-                    </div>
-                </div>
-            </div>
-            }
-
-</div>
+                @*<div class="category-header-container">
+                        <div class="category-header-row row">
+                            <div class="category-header-limits col-sm-4">
+                                <span>Limit:</span> @string.Format("{0:C}", budget.BudgetName)
+                            </div>
+                            <div class="category-header-limits col-sm-4">
+                                <span>Spent:</span> @string.Format("{0:C}", budget.BudgetId)
+                            </div>
+                            <div class="category-header-limits col-sm-4">
+                                <span>Available:</span> @string.Format("{0:C}", budget.BudgetAmount)
+                            </div>
+                        </div>
+                    </div>*@
 
 
-        </dd>
 
-    </dl>
+
+            </dd>
+
+    </div>
+        </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |

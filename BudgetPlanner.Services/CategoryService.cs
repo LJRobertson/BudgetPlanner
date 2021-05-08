@@ -1,4 +1,5 @@
 ﻿using BudgetPlanner.Data;
+using BudgetPlanner.Models;
 using BudgetPlanner.Models.Category;
 using System;
 using System.Collections.Generic;
@@ -90,43 +91,56 @@ namespace BudgetPlanner.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                //find this category
                 var entity =
                     ctx
                         .Categories
                         .Single(e => e.CategoryId == id && e.UserId == _userId);
 
+                //get the list of budget numbers that use this category
                 var budgetCategoryList =
                     ctx
                         .BudgetCategory
                         .Where(e => e.CategoryId == id)
                         .ToList();
 
+                //get the amounts used for this category
                 var budgetCategoryAmountItem =
                    ctx
                        .BudgetCategory
                        .Where(e => e.CategoryId == id)
                        .Select(e => e.Amount);
 
-                List<int> budgetIds = new List<int>();
+                //link to Budget Service
+                var bs = new BudgetService();              
+
+                //Extract each Budget from the budgetCategoryList
+                List<BudgetListItem> budgetList = new List<BudgetListItem>();
                 foreach (var bc in budgetCategoryList)
                 {
-                    var budget = bc.BudgetId;
+                    var budgetId = bc.BudgetId;
                     var amount = bc.Amount;
-                    budgetIds.Add(budget);
+                    var budgetName = bs.GetBudgetListItemById(bc.BudgetId, _userId).BudgetName;
+                    budgetList.Add(new BudgetListItem
+                    {
+                        BudgetId = budgetId,
+                        BudgetName = budgetName,
+                        BudgetAmount = amount
+                    });
                 }
 
-                foreach (var testAmount in budgetCategoryList)
-                {
-                    var budgetAmount = testAmount.Amount;
-                }
+                //foreach (var testAmount in budgetCategoryList)
+                //{
+                //    var budgetAmount = testAmount.Amount;
+                //}
                 //START WORKING HERE need to fix list inputs. Compare this to BudgetDetails method.
                 return
                     new CategoryDetail
                     {
                         CategoryId = entity.CategoryId,
                         Name = entity.Name,
-                        CategoryAmount = budgetCategoryAmountItem,
-                        ListOfBudgets = budgetIds
+                        //CategoryAmount = amount,
+                        ListOfBudgets = budgetList
                     };
             }
         }

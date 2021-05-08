@@ -9,6 +9,7 @@ namespace BudgetPlanner.Services
         bool CreateBudget(BudgetCreate model);
         bool DeleteBudget(int budgetId, Guid userId);
         BudgetDetail GetBudgetById(int id, Guid userId);
+        BudgetListItem GetBudgetListItemById(int id, Guid userId);
         IEnumerable<BudgetListItem> GetBudgets(Guid id);
         bool UpdateBudget(BudgetEdit model, Guid userId);
     }
