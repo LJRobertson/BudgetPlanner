@@ -23,12 +23,6 @@ namespace BudgetPlanner.Services
 
         public bool CreateBudget(BudgetCreate model)
         {
-            //List<int> categoryIdList = new List<int>();
-            //foreach (int cId in model.ListOfCategoryIds)
-            //{
-            //    categoryIdList.Add(cId)
-            //}
-
             var entity =
                 new Budget()
                 {
@@ -114,7 +108,6 @@ namespace BudgetPlanner.Services
                         decimal transactionAmount = transaction.Amount;
                         categoryAmountSpentList.Add(transactionAmount);
                     }
-                    //decimal amountSpent = categoryAmountSpentList.Sum();
 
                     categoryList.Add(new CategoryListItem
                     {
@@ -201,16 +194,5 @@ namespace BudgetPlanner.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
-        //public IEnumerable<TransactionListItem> GetTransactionById(int id)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .Transactions
-        //                .Where 
-        //    }
-        //}
     }
 }

@@ -88,12 +88,10 @@ namespace BudgetPlanner.WebMVC.Controllers
             var model =
                 new TransactionEdit
                 {
-                    Name = detail.Name,
+                    MerchantName = detail.MerchantName,
                     Amount = detail.Amount,
                     TransactionDate = detail.TransactionDate,
-                    MerchantName = detail.MerchantName,
                     CategoryId = detail.CategoryId,
-                    ExcludeTransaction = detail.ExcludeTransaction
                 };
 
             return View(model);

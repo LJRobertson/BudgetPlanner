@@ -25,13 +25,11 @@ namespace BudgetPlanner.Services
                     new Transaction()
                     {
                         UserId = _userId,
-                        Name = model.Name,
+                        MerchantName = model.MerchantName,
                         Amount = model.Amount,
                         TransactionDate = model.TransactionDate,
                         BudgetId = model.BudgetId,
-                        MerchantName = model.MerchantName,
                         CategoryId = model.CategoryId,
-                        ExcludeTransaction = model.ExcludeTransaction
                     };
 
             var budgetCategoryEntity =
@@ -70,6 +68,7 @@ namespace BudgetPlanner.Services
                                 new TransactionListItem
                                 {
                                     TransactionId = e.TransactionId,
+                                    BudgetId = e.BudgetId,
                                     MerchantName = e.MerchantName,
                                     Amount = e.Amount,
                                     TransactionDate = e.TransactionDate,
@@ -148,14 +147,6 @@ namespace BudgetPlanner.Services
                 {
                     memoContentString = transactionMemo.MemoContent;
                 }
-                //send memos to a list, then look for the ID
-
-                //string memo = ctx.Memos.SingleOrDefault(e => e.TransactionId == id).MemoContent;
-
-                //var memo =
-                //    ctx
-                //        .Memos
-                //        .Single(e => e.TransactionId == id);
 
                 return
                     new TransactionDetail
@@ -166,9 +157,7 @@ namespace BudgetPlanner.Services
                         TransactionDate = entity.TransactionDate,
                         MerchantName = entity.MerchantName,
                         CategoryId = entity.CategoryId,
-                        ExcludeTransaction = entity.ExcludeTransaction,
                         MemoContent = memoContentString 
-                        //Add nullable memo 
                     };
             }
         }
@@ -182,13 +171,11 @@ namespace BudgetPlanner.Services
                         .Transactions
                         .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
 
-                entity.Name = model.Name;
                 entity.BudgetId = model.BudgetId;
+                entity.MerchantName = model.MerchantName;
                 entity.Amount = model.Amount;
                 entity.TransactionDate = model.TransactionDate;
-                entity.MerchantName = model.MerchantName;
                 entity.CategoryId = model.CategoryId;
-                entity.ExcludeTransaction = model.ExcludeTransaction;
 
                 return ctx.SaveChanges() == 1;
             }

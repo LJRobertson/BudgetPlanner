@@ -4,59 +4,49 @@
     ViewBag.Title = "Details";
 }
 
-<div class="custom-header text-center">
+<div class="custom-header text-center d-flex">
     <span>@Html.DisplayFor(model => model.Name)</span>
     <h4>Category Detail</h4>
 </div>
-<div>
-    <hr />
-    <div class="general-use-container">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </dt>
+<hr />
+<div class="general-use-container d-flex">
+    <div class="general-use-header-blue text-center">
 
-            <dd>
-                @Html.DisplayFor(model => model.CategoryId)
-            </dd>
+        <span>This is @Html.DisplayNameFor(model => model.CategoryId):</span>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ListOfBudgets)
-            </dt>
-
-            <dd>
-                @foreach (var budget in Model.ListOfBudgets)
-                {
-                    @budget.BudgetName; @budget.BudgetId
-                }
-
-                @*//if (Model.CategoryAmount != null)
-                    //{
-
-                    //    string.Format("{0:C}", Model.CategoryAmount);
-                    //}*@
-
-                @*<div class="category-header-container">
-                        <div class="category-header-row row">
-                            <div class="category-header-limits col-sm-4">
-                                <span>Limit:</span> @string.Format("{0:C}", budget.BudgetName)
-                            </div>
-                            <div class="category-header-limits col-sm-4">
-                                <span>Spent:</span> @string.Format("{0:C}", budget.BudgetId)
-                            </div>
-                            <div class="category-header-limits col-sm-4">
-                                <span>Available:</span> @string.Format("{0:C}", budget.BudgetAmount)
-                            </div>
-                        </div>
-                    </div>*@
-
-
-
-
-            </dd>
-
+        @Html.DisplayFor(model => model.CategoryId)
     </div>
-        </dl>
+    <table class="category-budget-list-table col-sm-12 d-flex">
+        <tr class="general-use-header text-center" colspan="2">
+            <td colspan="2">
+                <span>@Html.DisplayNameFor(model => model.ListOfBudgets)</span>
+            </td>
+        </tr>
+        <tr>
+                <th class="general-use-header text-center d-flex flex-row"> 
+                    Budget Name:
+                </th>
+                <th class="general-use-header text-center d-flex flex-row">
+                    Budget ID Number:
+                </th>
+        </tr>
+        @foreach (var budget in Model.ListOfBudgets)
+        {
+            <tr class="text-center">
+                <td class="category-budget-list">
+                    @budget.BudgetName
+                </td>
+                <td class="category-budget-list">
+                    @budget.BudgetId
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |

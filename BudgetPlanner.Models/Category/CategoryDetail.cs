@@ -9,7 +9,7 @@ namespace BudgetPlanner.Models.Category
 {
     public class CategoryDetail
     {
-        [Display(Name = "ID Number")]
+        [Display(Name = "Category ID Number")]
         public int CategoryId { get; set; }
 
         public string Name { get; set; }
@@ -20,6 +20,7 @@ namespace BudgetPlanner.Models.Category
 
         public List<int> ListOfBudgetIds { get; set; } = new List<int>();
 
+        [Display(Name = "Budgets Where Used")]
         public virtual List<BudgetListItem> ListOfBudgets { get; set; } = new List<BudgetListItem>();
 
     }
