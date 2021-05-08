@@ -16,16 +16,13 @@ namespace BudgetPlanner.Data
         [Required]
         public Guid UserId { get; set; }
 
-        [MaxLength(20, ErrorMessage = "Transaction Name cannot be longer than 20 characters.")]
-        public string Name { get; set; }
+        [Required]
+        public string MerchantName { get; set; }
 
         [Required]
         public decimal Amount { get; set; }
 
         public DateTime TransactionDate { get; set; }
-
-        [Required]
-        public string MerchantName { get; set; }
 
         [Required]
         [ForeignKey(nameof(Budget))]
@@ -38,8 +35,6 @@ namespace BudgetPlanner.Data
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
-
-        public bool ExcludeTransaction { get; set; }
 
         public virtual Memo Memo  { get; set; }
     }
