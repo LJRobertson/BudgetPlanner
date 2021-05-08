@@ -189,9 +189,15 @@ namespace BudgetPlanner.Services
                     .Transactions
                     .Single(e => e.TransactionId == transactionId && e.UserId == _userId);
 
+                if(entity.Memo != null)
+                {
+                    var memoService = new MemoService(_userId);
+                    memoService.DeleteMemo(transactionId);
+                }
+
                 ctx.Transactions.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
 
