@@ -106,7 +106,6 @@ namespace BudgetPlanner.Services
                        .BudgetCategory
                        .Where(e => e.CategoryId == id)
                        .Select(e => e.Amount);
-            
 
                 List<int> budgetIds = new List<int>();
                 foreach (var bc in budgetCategoryList)
@@ -119,18 +118,15 @@ namespace BudgetPlanner.Services
                 foreach (var testAmount in budgetCategoryList)
                 {
                     var budgetAmount = testAmount.Amount;
-
-                    
-                   // return 
                 }
-
+                //START WORKING HERE need to fix list inputs. Compare this to BudgetDetails method.
                 return
                     new CategoryDetail
                     {
                         CategoryId = entity.CategoryId,
                         Name = entity.Name,
-                        //CategoryAmount = budgetCategoryAmountItem
-                        //ListOfBudgets = budgetIds,
+                        CategoryAmount = budgetCategoryAmountItem,
+                        ListOfBudgets = budgetIds
                     };
             }
         }

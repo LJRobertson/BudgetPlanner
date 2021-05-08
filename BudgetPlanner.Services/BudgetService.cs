@@ -14,10 +14,12 @@ namespace BudgetPlanner.Services
     {
         private readonly Guid _userId;
 
-        public BudgetService(Guid userId)
-        {
-            _userId = userId;
-        }
+
+        //The method below breaks the dependency injection
+        //public BudgetService(Guid userId)
+        //{
+        //    _userId = userId;
+        //}
 
         public bool CreateBudget(BudgetCreate model)
         {
@@ -30,7 +32,7 @@ namespace BudgetPlanner.Services
             var entity =
                 new Budget()
                 {
-                    OwnerId = _userId,
+                    OwnerId = Guid.Parse(model.UserId),
                     BudgetName = model.BudgetName,
                     BudgetAmount = model.BudgetAmount,
                     ListOfCategoryIds = model.ListOfCategoryIds,
@@ -44,14 +46,14 @@ namespace BudgetPlanner.Services
             }
         }
 
-        public IEnumerable<BudgetListItem> GetBudgets()
+        public IEnumerable<BudgetListItem> GetBudgets(Guid id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Budgets
-                        .Where(e => e.OwnerId == _userId)
+                        .Where(e => e.OwnerId == id)
                         .Select(
                             e =>
                                 new BudgetListItem
@@ -65,19 +67,19 @@ namespace BudgetPlanner.Services
             }
         }
 
-        public BudgetDetail GetBudgetById(int id)
+        public BudgetDetail GetBudgetById(int id, Guid userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Budgets
-                        .Single(e => e.BudgetId == id && e.OwnerId == _userId);
+                        .Single(e => e.BudgetId == id && e.OwnerId == userId);
 
                 var transactionList =
                     ctx
                         .Transactions
-                        .Where(e => e.BudgetId == id && e.UserId == _userId)
+                        .Where(e => e.BudgetId == id && e.UserId == userId)
                         .Select(
                             e =>
                                 new TransactionListItem
@@ -96,7 +98,7 @@ namespace BudgetPlanner.Services
                         .Where(e => e.BudgetId == id)
                         .ToList();
 
-                var cs = new CategoryService(_userId);
+                var cs = new CategoryService(userId);
                 var categoryList = new List<CategoryListItem>();
 
 
@@ -149,14 +151,14 @@ namespace BudgetPlanner.Services
             }
         }
 
-        public bool UpdateBudget(BudgetEdit model)
+        public bool UpdateBudget(BudgetEdit model, Guid userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Budgets
-                        .Single(e => e.BudgetId == model.BudgetId && e.OwnerId == _userId);
+                        .Single(e => e.BudgetId == model.BudgetId && e.OwnerId == userId);
 
                 entity.BudgetName = model.BudgetName;
                 entity.BudgetAmount = model.BudgetAmount;
@@ -165,14 +167,14 @@ namespace BudgetPlanner.Services
             }
         }
 
-        public bool DeleteBudget(int budgetId)
+        public bool DeleteBudget(int budgetId, Guid userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Budgets
-                        .Single(e => e.BudgetId == budgetId && e.OwnerId == _userId);
+                        .Single(e => e.BudgetId == budgetId && e.OwnerId == userId);
 
                 ctx.Budgets.Remove(entity);
 

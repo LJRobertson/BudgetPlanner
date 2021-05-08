@@ -31,7 +31,7 @@ textarea {
 
 
 /* Budget Detail Classes */
-.budget-header display-4 {
+.custom-header span{
     font-family: 'Abril Fatface', cursive;
     font-weight: bold;
     color: #37515F;

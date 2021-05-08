@@ -12,12 +12,22 @@ namespace BudgetPlanner.WebMVC.Controllers
     [Authorize]
     public class BudgetController : Controller
     {
+        private readonly IBudgetService _budgetService;
+
+        public BudgetController(IBudgetService budgetService)
+        {
+            _budgetService = budgetService;
+        }
+
         // GET: Budget
         public ActionResult Index()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new BudgetService(userId);
-            var model = service.GetBudgets();
+            //Guid ownerId = Guid.Empty;
+            var user = User.Identity.GetUserId();
+            Guid ownerId = new Guid(user);
+            //var service = new BudgetService(userId);
+
+            var model = _budgetService.GetBudgets(ownerId);
 
 
             return View(model);
@@ -37,10 +47,11 @@ namespace BudgetPlanner.WebMVC.Controllers
             {
                 return View(model);
             }
+            model.UserId = User.Identity.GetUserId();
 
-            var service = CreateBudgetService();
+            //var service = CreateBudgetService();
 
-            if (service.CreateBudget(model))
+            if (_budgetService.CreateBudget(model))
             {
                 TempData["SaveResult"] = "Your budget was successfully created.";
                 return RedirectToAction("Index");
@@ -53,16 +64,22 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         public ActionResult Details(int id)
         {
-            var svc = CreateBudgetService();
-            var model = svc.GetBudgetById(id);
+            var user = User.Identity.GetUserId();
+            Guid userId = new Guid(user);
+
+            //var svc = CreateBudgetService();
+            var model = _budgetService.GetBudgetById(id, userId);
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var service = CreateBudgetService();
-            var detail = service.GetBudgetById(id);
+            var user = User.Identity.GetUserId();
+            Guid userId = new Guid(user);
+
+            //var service = CreateBudgetService();
+            var detail = _budgetService.GetBudgetById(id, userId);
             var model =
                 new BudgetEdit
                 {
@@ -80,6 +97,9 @@ namespace BudgetPlanner.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, BudgetEdit model)
         {
+            var user = User.Identity.GetUserId();
+            Guid userId = new Guid(user);
+
             if (!ModelState.IsValid) return View(model);
 
             if (model.BudgetId != id)
@@ -89,9 +109,9 @@ namespace BudgetPlanner.WebMVC.Controllers
                 return View(model);
             }
 
-            var service = CreateBudgetService();
+            //var service = CreateBudgetService();
 
-            if (service.UpdateBudget(model))
+            if (_budgetService.UpdateBudget(model, userId))
             {
                 TempData["SaveResult"] = "Your budget was updated.";
                 return RedirectToAction("Index");
@@ -104,8 +124,10 @@ namespace BudgetPlanner.WebMVC.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = CreateBudgetService();
-            var model = svc.GetBudgetById(id);
+            var user = User.Identity.GetUserId();
+            Guid userId = new Guid(user);
+            //var svc = CreateBudgetService();
+            var model = _budgetService.GetBudgetById(id, userId);
 
             return View(model);
         }
@@ -115,20 +137,25 @@ namespace BudgetPlanner.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBudget(int id)
         {
-            var service = CreateBudgetService();
+            var user = User.Identity.GetUserId();
+            Guid userId = new Guid(user);
 
-            service.DeleteBudget(id);
+            //var service = CreateBudgetService();
+
+            _budgetService.DeleteBudget(id, userId);
 
             TempData["SaveResult"] = "Your budget was deleted.";
 
             return RedirectToAction("Index");
         }
 
-        private BudgetService CreateBudgetService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new BudgetService(userId);
-            return service;
-        }
+
+        //replace code below with a User ID property on model and (User.Identity.GetUserId()
+        //private BudgetService CreateBudgetService()
+        //{
+        //    var userId = Guid.Parse(User.Identity.GetUserId());
+        //    var service = new BudgetService(userId);
+        //    return service;
+        //}
     }
 }

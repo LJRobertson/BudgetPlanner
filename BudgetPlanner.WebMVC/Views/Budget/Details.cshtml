@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Details";
 }
-<div class="budget-header text-center">
-    <display-4>@Html.DisplayFor(model => model.BudgetName)</display-4>
+<div class="custom-header text-center">
+    <span>@Html.DisplayFor(model => model.BudgetName)</span>
     <h4>Budget Details</h4>
 </div>
 
@@ -50,12 +50,12 @@
                                 {
                                     if (transaction.CategoryId == category.CategoryId)
                                     {
-                                        <div class="category-transaction-row row row-cols-1 row-cols-sm-2 row-cols-md-4">
-                                            <div class="category-transaction-item col">
+                                        <div class="category-transaction-row row">
+                                            <div class="category-transaction-item col-sm-offset-2">
                                                 <span>@transaction.MerchantName</span>
                                                  @string.Format("{0:C}", transaction.Amount)
                                             </div>
-                                            <div class="category-transaction-item col">
+                                            <div class="category-transaction-item col-sm-offset-2">
                                                 Date: @transaction.TransactionDate.ToString("MM/dd/yyyy")
                                             </div>
                                         </div>

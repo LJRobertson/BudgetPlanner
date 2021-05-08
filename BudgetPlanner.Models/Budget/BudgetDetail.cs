@@ -14,6 +14,8 @@ namespace BudgetPlanner.Models
         [Display(Name = "Budget ID")]
         public int BudgetId { get; set; }
 
+        public string UserId { get; set; }
+
         [Display(Name = "Budget Name")]
         public string BudgetName { get; set; }
 
