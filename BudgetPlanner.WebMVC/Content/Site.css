@@ -146,7 +146,19 @@ a:active {
     background-color: #5E987C;
 }
 
+.table-hover{
+    margin: 0px 0px;
+    padding: 0px;
+}
 
+table th {
+    border-top: none !important;
+    margin: 0px;
+}
+
+.table{
+    margin: 0px;
+}
 
 
 /* Budget Detail Classes */
@@ -199,14 +211,21 @@ a:active {
     font-weight: bold;
 }
 
-
 .budget-transaction-display ul {
     padding: 1em 4em;
 }
 
-.budget-transaction-list{
-    margin: 1em;
+.budget-transaction-list th{
+    padding: 0 !important;
 }
+.height {
+    height: 5px;
+}
+
+.category-name {
+    font-size: 20px;
+}
+
 
 /*CATEGORIES*/
 /*Category Details*/

@@ -7,103 +7,89 @@
     <span>@Html.DisplayFor(model => model.BudgetName)</span>
     <h4>Budget Details</h4>
 </div>
-
-<div>
-    <hr />
-    <div class="budget-detail-category-container">
-        <dd>
-            <div class="budget-detail-limits text-center">
-                <span>@Html.DisplayNameFor(model => model.BudgetAmount):</span> @Html.DisplayFor(model => model.BudgetAmount)
-                <br />
-                @if (Model.AmountSpent > Model.BudgetAmount)
-                {
-                    <span>@Html.DisplayNameFor(model => model.AmountSpent):</span> <span class="negative">@Html.DisplayFor(model => model.AmountSpent)</span>
-                }
-                @if (Model.AmountSpent <= Model.BudgetAmount)
-                {
-                    <span>@Html.DisplayNameFor(model => model.AmountSpent):</span> @Html.DisplayFor(model => model.AmountSpent)
-                }
-            </div>
-        </dd>
-        <dd>
-            @foreach (var category in Model.ListOfCategories)
-            {
-                <div class="budget-detail-category-card">
-                    @*<div class="category-header text-center d-flex justify-content-between">
-                            <span id="category-name">@category.Name</span>
-                            <span id="category-limits">Limit:@string.Format("{0:C}", category.CategoryAmount)   Spent: @string.Format("{0:C}", category.AmountSpent)     Available: @string.Format("{0:C}", category.RemainingCategoryAmount)</span>
-                        </div>*@
-                    <div class="category-header text-center">
-                        <span id="category-name">@category.Name</span>
-
-                        <div class="category-header-container">
-                            <div class="category-header-row row">
-                                <div class="category-header-limits col-sm-4">
-                                    <span>Limit:</span> @string.Format("{0:C}", category.CategoryAmount)
-                                </div>
-                                <div class="category-header-limits col-sm-4">
-                                    <span>Spent:</span> @string.Format("{0:C}", category.AmountSpent)
-                                </div>
-                                @if (category.RemainingCategoryAmount < 0)
-                                {
-                                    <div class="category-header-limits col-sm-4">
-                                        <span>Available:</span> <span class="negative">@string.Format("{0:C}", category.RemainingCategoryAmount)</span>
-                                    </div>
-                                }
-                                @if (category.RemainingCategoryAmount >= 0)
-                                {
-                                    <div class="category-header-limits col-sm-4">
-                                        <span>Available:</span> <span class="positive">@string.Format("{0:C}", category.RemainingCategoryAmount)</span>
-                                    </div>
-                                }
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="table-responsive-sm table-hover">
-                        <table class="budget-transaction-list table">
-                            <tr>
-                                <th>
-                                    Merchant Name
-                                </th>
-                                <th>
-                                    Amount
-                                </th>
-                                <th>
-                                    Date
-                                </th>
-                            </tr>
-                            @foreach (var testTransaction in Model.ListOfTransactions)
-                            {
-                        <tr>
-                            @if (testTransaction.CategoryId == category.CategoryId)
-                            {
-                                <td>
-                                    <div class="category-transaction-item">
-                                        <span>@testTransaction.MerchantName</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="category-transaction-item">
-                                        @string.Format("{0:C}", testTransaction.Amount)
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="category-transaction-item">
-                                        Date: @testTransaction.TransactionDate.ToString("MM/dd/yyyy")
-                                    </div>
-                                </td>
-                            }
-                        </tr>
-                            }
-                        </table>
-                    </div>
-
-                </div>
-            }
-        </dd>
+<hr />
+<div class="general-use-container table-responsive-sm">
+    <div class="general-use-header-blue text-center">
+        <span>@Html.DisplayNameFor(model => model.BudgetAmount):</span> @Html.DisplayFor(model => model.BudgetAmount)
+        <br />
+        @if (Model.AmountSpent > Model.BudgetAmount)
+        {
+            <span>@Html.DisplayNameFor(model => model.AmountSpent):</span>
+            <span class="negative">@Html.DisplayFor(model => model.AmountSpent)</span>
+        }
+        @if (Model.AmountSpent <= Model.BudgetAmount)
+        {
+            <span>@Html.DisplayNameFor(model => model.AmountSpent):</span>
+            @Html.DisplayFor(model => model.AmountSpent)
+        }
     </div>
+    <table class="budget-transaction-list table table-hover">
+        @foreach (var category in Model.ListOfCategories)
+        {
+            <tr class="category-header text-center">
+                <th></th>
+                <th class="general-use-header text-center">
+                    <span class="category-name">@category.Name</span>
+                </th>
+                <th></th>
+            </tr>
+            <tr class="category-header text-center">
+                <th class="category-header text-center">
+                    <span>Limit:</span> @string.Format("{0:C}", category.CategoryAmount)
+                </th>
+                <th class="category-header text-center">
+                    <span>Spent:</span> @string.Format("{0:C}", category.AmountSpent)
+                </th>
+                <th class="category-header text-center">
+                    @if (category.RemainingCategoryAmount < 0)
+                    {
+                        <span>Available:</span>
+                        <span class="negative">@string.Format("{0:C}", category.RemainingCategoryAmount)</span>
+                    }
+                    @if (category.RemainingCategoryAmount >= 0)
+                    {
+                        <span>Available:</span>
+                        <span class="positive">@string.Format("{0:C}", category.RemainingCategoryAmount)</span>
+                    }
+                </th>
+            </tr>
+            <tr class="category-header text-center">
+                <th class="text-center">
+                    Merchant Name
+                </th>
+                <th class="text-center">
+                    Amount
+                </th>
+                <th class="text-center">
+                    Date
+                </th>
+            </tr>
+            <tr class="category-header text-center">
+                <th colspan="3" class="height">
+                </th>
+            </tr>
+
+            foreach (var testTransaction in Model.ListOfTransactions)
+            {
+                <tr>
+                    @if (testTransaction.CategoryId == category.CategoryId)
+                    {
+                        <td class="text-center">
+                            <span class="category-transaction-item text-center">@testTransaction.MerchantName</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="category-transaction-item text-center">@string.Format("{0:C}", testTransaction.Amount)</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="category-transaction-item text-center">Date: @testTransaction.TransactionDate.ToString("MM/dd/yyyy")</span>
+                        </td>
+                    }
+                </tr>
+
+            }
+        }
+
+    </table>
 </div>
 <div class="viewing-message text-center">
     <p>
@@ -116,3 +102,82 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+@*<table class="budget-transaction-list table">
+
+        <tr class="budget-detail-limits text-center">
+            <th>
+                <span>@Html.DisplayNameFor(model => model.BudgetAmount):</span> @Html.DisplayFor(model => model.BudgetAmount)
+            </th>
+            <hr />
+            <th>
+                @if (Model.AmountSpent > Model.BudgetAmount)
+                {
+                    <span>@Html.DisplayNameFor(model => model.AmountSpent):</span>
+                    <span class="negative">@Html.DisplayFor(model => model.AmountSpent)</span>
+                }
+                @if (Model.AmountSpent <= Model.BudgetAmount)
+                {
+                    <span>@Html.DisplayNameFor(model => model.AmountSpent):</span>
+                    @Html.DisplayFor(model => model.AmountSpent)
+                }
+            </th>
+        </tr>
+            @foreach (var category in Model.ListOfCategories)
+            {
+                <tr class="category-header text-center">
+                    <td id="category-name">@category.Name</td>
+                    </tr>
+                    <span class="category-header-container">
+                        <tr class="category-header-row">
+                                <span class="category-header-limit">Limit:</span> @string.Format("{0:C}", category.CategoryAmount)
+                                <span class="category-header-limits">Spent:</span> @string.Format("{0:C}", category.AmountSpent)
+                            @if (category.RemainingCategoryAmount < 0)
+                            {
+                                    <span class="category-header-limits">Available:</span> <span class="negative">@string.Format("{0:C}", category.RemainingCategoryAmount)</span>
+                            }
+                            @if (category.RemainingCategoryAmount >= 0)
+                            {
+                                    <span class="category-header-limits">Available:</span> <span class="positive">@string.Format("{0:C}", category.RemainingCategoryAmount)</span>
+                            }
+
+                        </tr>
+                    </span>
+                </tr>
+
+                <div class="table-responsive-sm table-hover">
+                    <table class="budget-transaction-list table">
+                        <tr>
+                            <th>
+                                Merchant Name
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                        </tr>
+                        @foreach (var testTransaction in Model.ListOfTransactions)
+                        {
+                            <tr>
+                                @if (testTransaction.CategoryId == category.CategoryId)
+                                {
+                                    <td>
+                                        <span class="category-transaction-item">@testTransaction.MerchantName</span>
+                                    </td>
+                                    <td>
+                                        <span class="category-transaction-item">@string.Format("{0:C}", testTransaction.Amount)</span>
+                                    </td>
+                                    <td>
+                                        <span class="category-transaction-item">Date: @testTransaction.TransactionDate.ToString("MM/dd/yyyy")</span>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+            }
+    </table>*@
