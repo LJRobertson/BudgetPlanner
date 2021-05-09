@@ -86,15 +86,39 @@ textarea {
     color: lawngreen;
 }
 
-.general-button{
-    background-color: #EEB868;
+.general-button {
+    background-color: #5E987C;
+    color: #E3DBDB;
+    font-family: 'Abril Fatface', cursive;
     margin: 0.75em;
 }
 
-.general-button:hover{
-    background-color: #E4959E;
+.general-button:hover {
+    background-color: #C17767;
+    color: #37515F;
     font-family: 'Abril Fatface', cursive;
 }
+
+.general-button a{
+    text-decoration: none;
+    color: #E3DBDB;
+}
+
+.general-button a:hover{
+    text-decoration: none;
+    color: #37515F;
+}
+
+.create-button {
+    background-color: #5E987C;
+    color: #E3DBDB;
+    font-family: 'Abril Fatface', cursive;
+}
+
+    .create-button:hover {
+        background-color: #C17767;
+        font-family: 'Abril Fatface', cursive;
+    }
 
 .table-hover tbody tr:hover td {
     background-color: rgba(220,238,243,.55);

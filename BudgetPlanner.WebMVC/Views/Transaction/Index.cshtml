@@ -9,9 +9,9 @@
 </div>
 <hr />
 <div class="button-wrapper text-center">
-    <button type="button" class="general-button btn btn-default text-center">
+    <div class="general-button btn text-center">
         @Html.ActionLink("New Transaction", "Create")
-    </button>
+    </div>
     @if (TempData.ContainsKey("SaveResult"))
     {
         <div class="alert alert-succss fade in" role="alert">
