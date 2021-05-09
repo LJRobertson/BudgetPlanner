@@ -12,6 +12,7 @@ namespace BudgetPlanner.Models.Memo
         [Display(Name ="Related Transaction")]
         public int TransactionId { get; set; }
 
+        [Display(Name = "Memo Content")]
         public string MemoContent { get; set; }
     }
 }

@@ -4,48 +4,58 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@if (TempData.ContainsKey("SaveResult"))
-{
-<div class="alert alert-success fade in" role="alert">
-    @ViewBag.Save Result
-    <buton type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </buton>
-    @TempData["SaveResult"]
+<div class="custom-header text-center d-flex">
+    <span>Memo Index</span>
 </div>
-}
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TransactionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MemoContent)
-        </th>
-        <th></th>
-    </tr>
+<div class="button-wrapper text-center">
+    <button class="general-button btn btn-default text-center">
+        @Html.ActionLink("Create New", "Create")
+    </button>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransactionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MemoContent)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.TransactionId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.TransactionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.TransactionId })
-        </td>
-    </tr>
-}
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-success fade in" role="alert">
+            @ViewBag.Save Result
+            <buton type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </buton>
+            @TempData["SaveResult"]
+        </div>
+    }
+</div>
+<br />
 
-</table>
+<div class="general-use-container table-responsive-sm">
+    <div class="general-use-header-blue text-center"><span>You have entered the following Memos:</span></div>
+
+    <table class="table table-hover">
+        <tr class="general-use-header text-center">
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.TransactionId)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.MemoContent)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemoContent)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TransactionId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.TransactionId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TransactionId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

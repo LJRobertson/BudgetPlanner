@@ -10,10 +10,16 @@
 
 
 <h3 class="text-center">Are you sure you want to delete this?</h3>
+@if(Model.MemoContent != null)
+{
+    <h4 class="text-center text-danger">This will also delete the memo for this transaction.</h4>
+}
+
 <div>
     <hr />
     <div class="general-use-container">
         <dl class="dl-horizontal">
+            <br />
             <dt>
                 @Html.DisplayNameFor(model => model.TransactionId)
             </dt>
@@ -53,6 +59,16 @@
             <dd>
                 @Html.DisplayFor(model => model.CategoryId)
             </dd>
+            @if (Model.MemoContent != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.MemoContent)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MemoContent)
+                </dd>
+            }
         </dl>
         <hr />
 

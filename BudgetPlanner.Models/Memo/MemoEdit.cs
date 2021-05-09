@@ -12,6 +12,7 @@ namespace BudgetPlanner.Models.Memo
         public int TransactionId { get; set; }
 
         [Required]
+        [Display(Name = "Memo Content")]
         [MaxLength(75, ErrorMessage = "Memo limited to 75 characters.")]
         public string MemoContent
         {

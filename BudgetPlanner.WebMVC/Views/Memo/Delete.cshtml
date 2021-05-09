@@ -4,37 +4,47 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>MemoDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TransactionId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TransactionId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MemoContent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MemoContent)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+<div class="custom-header text-center d-flex">
+    <span>Memo Delete</span>
 </div>
+
+<h3 class="text-center">Are you sure you want to delete this memo?</h3>
+<h4 class="text-center">This will not delete the transaction.</h4>
+<div>
+    <hr />
+    <div class="general-use-container">
+        <dl class="dl-horizontal">
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.TransactionId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TransactionId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MemoContent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MemoContent)
+            </dd>
+
+        </dl>
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color text-center">
+                <input type="submit" value="Delete" class="general-button btn btn-default" />
+            </div>
+        }
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
