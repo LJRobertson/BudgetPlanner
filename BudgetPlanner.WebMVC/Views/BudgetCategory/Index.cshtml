@@ -4,51 +4,61 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Budget Categories Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@if (TempData.ContainsKey("SaveResult"))
-{
-<div class="alert alert-success fade in" role="alert">
-    @ViewBag.SaveResult
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
+<div class="custom-header text-center d-flex">
+    <span>Budget Categories Index</span>
 </div>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BudgetId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th></th>
-    </tr>
+<h5 class="text-center">Use to create and edit the category amounts on your budget.</h5>
+<hr />
+<div class="button-wrapper text-center">
+    <button type="button" class="general-button btn btn-default text-center">
+        @Html.ActionLink("Create New", "Create")
+    </button>
+    @if (TempData.ContainsKey("SaveResult"))
+    {
+        <div class="alert alert-success fade in" role="alert">
+            @ViewBag.SaveResult
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+        </div>
+    }
+</div>
+<br />
+<div class="general-use-container table-responsive-sm">
+    <div class="general-use-header-blue text-center"><span>You have the following Category limits on your Budgets:</span></div>
+    <table class="table table-hover">
+        <tr class="general-use-header text-center">
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.BudgetId)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BudgetId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { budgetId = item.BudgetId, categoryId = item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { budgetId = item.BudgetId, categoryId = item.CategoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { budgetId = item.BudgetId, categoryId = item.CategoryId })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.BudgetId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { budgetId = item.BudgetId, categoryId = item.CategoryId }) |
+                    @Html.ActionLink("Details", "Details", new { budgetId = item.BudgetId, categoryId = item.CategoryId }) |
+                    @Html.ActionLink("Delete", "Delete", new { budgetId = item.BudgetId, categoryId = item.CategoryId })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

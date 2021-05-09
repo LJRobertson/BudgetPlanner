@@ -88,14 +88,16 @@ namespace BudgetPlanner.WebMVC.Controllers
             var budget = new SelectList(ctx.Budgets.ToList(), "BudgetId", "BudgetName");
             ViewBag.Budgets = budget;
 
-            var category = new SelectList(ctx.Categories.ToList(), "CategoryId", "Name");
-            ViewBag.Categories = category;
+            var category = new SelectList(ctx.Categories, "CategoryId", "Name");
+            ViewBag.CategoryId = category;
 
             var service = CreateTransactionService();
             var detail = service.GetTransactionById(id);
             var model =
                 new TransactionEdit
                 {
+                    TransactionId = detail.TransactionId,
+                    BudgetId = detail.BudgetId,
                     MerchantName = detail.MerchantName,
                     Amount = detail.Amount,
                     TransactionDate = detail.TransactionDate,
@@ -113,6 +115,11 @@ namespace BudgetPlanner.WebMVC.Controllers
 
             if(model.TransactionId != id)
             {
+                var ctx = new ApplicationDbContext();
+
+                var category = new SelectList(ctx.Categories, "CategoryId", "Name");
+                ViewBag.CategoryId = category;
+
                 ModelState.AddModelError("", "Transaction ID does not match.");
                 return View(model);
             }

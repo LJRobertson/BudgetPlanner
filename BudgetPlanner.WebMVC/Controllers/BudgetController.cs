@@ -29,7 +29,6 @@ namespace BudgetPlanner.WebMVC.Controllers
 
             var model = _budgetService.GetBudgets(ownerId);
 
-
             return View(model);
         }
 

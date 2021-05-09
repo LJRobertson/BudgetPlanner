@@ -168,6 +168,7 @@ namespace BudgetPlanner.Services
                         .Transactions
                         .Single(e => e.TransactionId == model.TransactionId && e.UserId == _userId);
 
+                entity.TransactionId = model.TransactionId;
                 entity.BudgetId = model.BudgetId;
                 entity.MerchantName = model.MerchantName;
                 entity.Amount = model.Amount;
