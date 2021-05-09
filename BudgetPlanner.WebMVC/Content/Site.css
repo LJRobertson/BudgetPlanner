@@ -48,6 +48,14 @@ textarea {
 }
 
 
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
 .general-use-header-blue {
     background-color: #37515F;
     color: #E3DBDB;
@@ -74,6 +82,12 @@ textarea {
     font-size: calc(1.475rem + 2.7vw);
 }
 
+.home-start span{
+    font-family: 'Abril Fatface', cursive;
+    font-weight: bold;
+    color: #37515F;
+}
+
 .pad{
     padding: 2em 0;
 }
@@ -84,6 +98,12 @@ textarea {
 
 .positive{
     color: lawngreen;
+}
+
+.home-image {
+    border: 1px solid;
+    border-color: #E3DBDB;
+    box-shadow: 3px 3px 5px lightgray;
 }
 
 .general-button {
@@ -127,7 +147,6 @@ textarea {
 .table-hover tbody tr:hover th {
     background-color: #5E987C;
 }
-
 
 
 
@@ -190,10 +209,7 @@ textarea {
 .budget-transaction-list{
     margin: 1em;
 }
-/*.budget-transaction-display {
-    background-color: antiquewhite;
-}
-*/
+
 /*CATEGORIES*/
 /*Category Details*/
 .category-budget-list {
@@ -210,14 +226,5 @@ CreateTransaction
     border-radius: 3em;
     overflow: hidden;
     padding: 3em 5em 3em 5em;
-    /*    margin: 3em;
-*/
 }
 
-.borderless th{
-    border: none;
-}
-
-
-
-}

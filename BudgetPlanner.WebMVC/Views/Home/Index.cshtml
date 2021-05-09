@@ -5,27 +5,34 @@
 <div class="jumbotron text-center">
     <h1>Budget Builder</h1>
     <p class="lead">Budget creation and tracking.</p>
-    <h4>Log In or Register to get started.</h4>
+    @if (User.Identity.IsAuthenticated == false)
+    {
+        <h4>Log In or Register to get started.</h4>
+    }
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        @if (User.Identity.IsAuthenticated == true)
+        {
+            <h2 class="home-start"><span>Where do I begin?</span></h2>
+            <p>
+                Start with a Budget. Be honest with yourself and include every penny you earn. Add Categories and Category Limits. Pizza and beer regularly impacting your wallet? Make a Category for them!
+            </p>
+            <button class="create-button btn btn-default"> @Html.ActionLink("Create Budget", "Create", "Budget")</button>
+        }
+
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <img class="home-image img-responsive" src="~/Content/Assets/coinjar.jpg" />
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    @if (User.Identity.IsAuthenticated == true)
+    {
+<div class="col-md-4">
+    <h2 class="home-start"><span>What's next?</span></h2>
+    <p>Once you have budgets and categories, it's time to add transactions. Be sure to go back to view your Budget Detail. This is where the pieces all come together.</p>
+    <button class="create-button btn btn-default"> @Html.ActionLink("Add Transaction", "Create", "Transaction")</button>
+</div>
+    }
+
 </div>
