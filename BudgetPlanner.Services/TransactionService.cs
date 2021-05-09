@@ -31,25 +31,27 @@ namespace BudgetPlanner.Services
                         BudgetId = model.BudgetId,
                         CategoryId = model.CategoryId,
                     };
-
-            var budgetCategoryList =
-                ctx.
-                    BudgetCategory
-                    .Where(e => e.CategoryId == model.CategoryId)
-                    .ToList();
-
-            if (budgetCategoryList == null)
+            try
+            {
+                var budgetCategoryItem =
+                    ctx.
+                        BudgetCategory
+                        .Single(e => e.CategoryId == model.CategoryId && e.BudgetId == model.BudgetId);
+            }
+            catch
             {
                 var newBudgetCategory =
-                    new BudgetCategory
-                    {
-                        BudgetId = model.BudgetId,
-                        CategoryId = model.CategoryId
-                    };
+                                 new BudgetCategory
+                                 {
+                                     BudgetId = model.BudgetId,
+                                     CategoryId = model.CategoryId
+                                 };
+
+                ctx.BudgetCategory.Add(newBudgetCategory);
             }
-            
-                ctx.Transactions.Add(entity);
-                return ctx.SaveChanges() == 1;
+
+            ctx.Transactions.Add(entity);
+            return ctx.SaveChanges() >= 1;
         }
 
         public IEnumerable<TransactionListItem> GetTransactions()
@@ -154,7 +156,7 @@ namespace BudgetPlanner.Services
                         TransactionDate = entity.TransactionDate,
                         MerchantName = entity.MerchantName,
                         CategoryId = entity.CategoryId,
-                        MemoContent = memoContentString 
+                        MemoContent = memoContentString
                     };
             }
         }
@@ -163,6 +165,22 @@ namespace BudgetPlanner.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var budgetCategoryList =
+                         ctx.
+                             BudgetCategory
+                             .Where(e => e.CategoryId == model.CategoryId)
+                             .ToList();
+
+                if (budgetCategoryList == null)
+                {
+                    var newBudgetCategory =
+                        new BudgetCategory
+                        {
+                            BudgetId = model.BudgetId,
+                            CategoryId = model.CategoryId
+                        };
+                }
+
                 var entity =
                     ctx
                         .Transactions
@@ -187,7 +205,7 @@ namespace BudgetPlanner.Services
                     .Transactions
                     .Single(e => e.TransactionId == transactionId && e.UserId == _userId);
 
-                if(entity.Memo != null)
+                if (entity.Memo != null)
                 {
                     var memoService = new MemoService(_userId);
                     memoService.DeleteMemo(transactionId);
