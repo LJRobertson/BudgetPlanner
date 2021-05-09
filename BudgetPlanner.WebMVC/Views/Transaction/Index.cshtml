@@ -12,16 +12,18 @@
     <div class="general-button btn text-center">
         @Html.ActionLink("New Transaction", "Create")
     </div>
-    @if (TempData.ContainsKey("SaveResult"))
-    {
-        <div class="alert alert-succss fade in" role="alert">
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            @TempData["SaveResult"]
-        </div>
-    }
 </div>
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
 <br />
 
 <div class="general-use-container table-responsive-sm">

@@ -73,6 +73,7 @@ namespace BudgetPlanner.Services
                 var transactionList =
                     ctx
                         .Transactions
+                        .OrderBy(e=> e.TransactionDate)
                         .Where(e => e.BudgetId == id && e.UserId == userId)
                         .Select(
                             e =>

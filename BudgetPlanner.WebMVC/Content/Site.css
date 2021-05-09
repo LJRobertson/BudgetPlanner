@@ -31,18 +31,16 @@ textarea {
 
 /*GENERAL USE*/
 .general-use-container {
-    border: 2px solid black;
+    border: 2px solid #6D6466;
     border-radius: 3em;
     background: linear-gradient(to right, rgba(220,238,243,.5), rgba(220,238,243,.5));
-/*    margin: 3em;
-*/    overflow: hidden;
+    overflow: hidden;
 }
 
 .general-use-container hr {
     margin-top: 0px;
     margin-bottom: 0px;
-/*    padding: 1em 1em;
-*/    border: 0;
+*   border: 0;
     border-top: 1px solid #eeeeee;
     width: 75%;
 }
@@ -163,7 +161,7 @@ a:active {
     }
 
 .budget-detail-category-container {
-    border: 2px solid black;
+    border: 2px solid #6D6466;
     border-radius: 3em;
     overflow: hidden;
 }

@@ -15,16 +15,18 @@
     <button type="button" class="general-button btn btn-default text-center">
         @Html.ActionLink("Create New", "Create")
     </button>
-    @if (TempData.ContainsKey("SaveResult"))
-    {
-        <div class="alert alert-success fade in" role="alert">
-            @ViewBag.SaveResult
-            <button type="button" class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-        </div>
-    }
 </div>
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+<div class="alert alert-success fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+    </button>
+    @TempData["SaveResult"]
+</div>
+}
+
 <br />
 <div class="general-use-container table-responsive-sm">
     <div class="general-use-header-blue text-center"><span>You have the following Category limits on your Budgets:</span></div>
