@@ -129,17 +129,11 @@ namespace BudgetPlanner.Services
                     });
                 }
 
-                //foreach (var testAmount in budgetCategoryList)
-                //{
-                //    var budgetAmount = testAmount.Amount;
-                //}
-                //START WORKING HERE need to fix list inputs. Compare this to BudgetDetails method.
                 return
                     new CategoryDetail
                     {
                         CategoryId = entity.CategoryId,
                         Name = entity.Name,
-                        //CategoryAmount = amount,
                         ListOfBudgets = budgetList
                     };
             }

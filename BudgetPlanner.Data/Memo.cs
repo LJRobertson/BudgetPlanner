@@ -11,9 +11,6 @@ namespace BudgetPlanner.Data
     public class Memo
 
     {
-        //[Key]
-        //public int MemoId { get; set; }
-
         [Key]
         [ForeignKey(nameof(Transaction))]
         public int TransactionId { get; set; }

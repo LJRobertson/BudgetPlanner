@@ -31,15 +31,5 @@ namespace BudgetPlanner.Data
 
         public virtual List<Category> ListOfCategories { get; set; } = new List<Category>();
 
-        //[ForeignKey(nameof(Transaction))]
-        //public int? TransactionId { get; set; }
-
-        //public virtual Transaction Transaction { get; set; }
-
-
-        //[ForeignKey(nameof(Category))]
-        //public int? CategoryId { get; set; }
-
-        //public virtual Category Category { get; set; }
     }
 }

@@ -19,13 +19,5 @@ namespace BudgetPlanner.Models
         [Display(Name = "Budgeted Amount")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal BudgetAmount { get; set; }
-       
-        //public List<int> ListOfCategoryIds { get; set; } = new List<int>();
-
-        //public virtual List<CategoryListItem> ListOfCategories { get; set; } = new List<CategoryListItem>();
-
-        //public List<int> ListOfTransactionIds { get; set; } = new List<int>();
-
-        //public virtual List<TransactionListItem> ListOfTransactions { get; set; } = new List<TransactionListItem>();
     }
 }

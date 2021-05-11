@@ -28,7 +28,5 @@ namespace BudgetPlanner.Models.Transaction
         [Required]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
-
-        //link to Memo
     }
 }

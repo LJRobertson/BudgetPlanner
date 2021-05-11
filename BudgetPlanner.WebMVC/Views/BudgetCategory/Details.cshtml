@@ -4,39 +4,43 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="custom-header text-center d-flex">
+    <span>Category Limit Details</span>
+</div>
 
 <div>
-    <h4>BudgetCategoryDetail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BudgetId)
-        </dt>
+    <div class="general-use-container text-center">
+        <dl class="dl-horizontal">
+            <br />
+            <dt>
+                @Html.DisplayNameFor(model => model.BudgetId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BudgetId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.BudgetId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CategoryId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Amount)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Amount)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetId}) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
