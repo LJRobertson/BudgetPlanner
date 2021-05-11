@@ -59,36 +59,12 @@
     <Compile Include="Category.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Memo.cs" />
-    <Compile Include="Migrations\202104200104146_InitialMigration.cs" />
-    <Compile Include="Migrations\202104200104146_InitialMigration.Designer.cs">
-      <DependentUpon>202104200104146_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202104230113324_ChangedToDecimal.cs" />
-    <Compile Include="Migrations\202104230113324_ChangedToDecimal.Designer.cs">
-      <DependentUpon>202104230113324_ChangedToDecimal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105081958014_AdjustedTransaction.cs" />
-    <Compile Include="Migrations\202105081958014_AdjustedTransaction.Designer.cs">
-      <DependentUpon>202105081958014_AdjustedTransaction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104200104146_InitialMigration.resx">
-      <DependentUpon>202104200104146_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104230113324_ChangedToDecimal.resx">
-      <DependentUpon>202104230113324_ChangedToDecimal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105081958014_AdjustedTransaction.resx">
-      <DependentUpon>202105081958014_AdjustedTransaction.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

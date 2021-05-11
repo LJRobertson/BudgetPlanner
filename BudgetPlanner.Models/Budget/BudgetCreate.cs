@@ -11,6 +11,7 @@ namespace BudgetPlanner.Models
     {
         public string UserId { get; set; }
         [Required]
+        [Display(Name = "Budget Name")]
         [MaxLength(30, ErrorMessage = "Budget name is limited to 30 characters.")]
         public string BudgetName { get; set; }
 
