@@ -25,12 +25,16 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         public ActionResult Create()
         {
-            var ctx = new ApplicationDbContext();
+            BudgetService budgetService = new BudgetService();
 
-            var budget = new SelectList(ctx.Budgets.ToList(), "BudgetId", "BudgetName");
+            Guid userid = Guid.Parse( User.Identity.GetUserId());
+
+            var budget = new SelectList(budgetService.GetBudgets(userid), "BudgetId", "BudgetName");
             ViewBag.Budgets = budget;
 
-            var category = new SelectList(ctx.Categories.ToList(), "CategoryId", "Name");
+            CategoryService categoryService = new CategoryService(userid);
+
+            var category = new SelectList(categoryService.GetCategories(), "CategoryId", "Name");
             ViewBag.Categories = category;
 
             return View();

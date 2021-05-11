@@ -95,7 +95,7 @@ namespace BudgetPlanner.Services
                 var entity =
                     ctx
                         .Categories
-                        .Single(e => e.CategoryId == id && e.UserId == _userId);
+                        .Single(e => e.CategoryId == id);
 
                 //get the list of budget numbers that use this category
                 var budgetCategoryList =

@@ -16,15 +16,16 @@
         @Html.ActionLink("Create New", "Create")
     </button>
 </div>
+<h4 class="text-center text-danger">You must have set up at least one budget and one category before setting a limit.</h4>
 
 @if (TempData.ContainsKey("SaveResult"))
 {
-<div class="alert alert-success fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
 }
 
 <br />

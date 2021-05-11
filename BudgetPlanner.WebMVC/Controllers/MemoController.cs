@@ -23,6 +23,13 @@ namespace BudgetPlanner.WebMVC.Controllers
 
         public ActionResult Create()
         {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+
+            TransactionService transactionService = new TransactionService(userId);
+
+            var transaction = new SelectList(transactionService.GetTransactions(), "TransactionId", "TransactionId");
+            ViewBag.Transactions = transaction;
+
             return View();
         }
 

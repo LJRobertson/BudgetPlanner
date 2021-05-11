@@ -152,7 +152,7 @@ namespace BudgetPlanner.Services
                 var entity =
                     ctx
                         .Budgets
-                        .Single(e => e.BudgetId == id && e.OwnerId == userId);
+                        .Single(e => e.BudgetId == id);
 
                 return
                     new BudgetListItem
