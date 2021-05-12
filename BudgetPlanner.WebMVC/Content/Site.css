@@ -245,3 +245,18 @@ CreateTransaction
     padding: 3em 5em 3em 5em;
 }
 
+.navbar-inverse {
+    background-color: #5E987C;
+    border-color: #5E7A98;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #D5E2DC;
+    }
+
+.navbar-header span {
+    font-family: 'Abril Fatface', cursive;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #D5E2DC;

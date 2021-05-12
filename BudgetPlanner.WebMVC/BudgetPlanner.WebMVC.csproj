@@ -215,6 +215,8 @@
   <ItemGroup>
     <Content Include="Content\Assets\coins.jpg" />
     <Content Include="Content\Assets\coinjar.jpg" />
+    <Content Include="Content\Assets\coins2.jpg" />
+    <Content Include="Content\Assets\money.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
