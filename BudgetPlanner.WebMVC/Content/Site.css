@@ -260,3 +260,18 @@ CreateTransaction
 
 .navbar-inverse .navbar-nav > li > a {
     color: #D5E2DC;
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: transparent;
+}
+
+    .jumbotron h1,
+    .jumbotron .h1 {
+        color: inherit;
+        font-family: 'Abril Fatface', cursive;
+        color: #507D67;
